@@ -31,6 +31,7 @@ import {
     U64,
 } from "./primitive"
 import * as iconv from "iconv-lite"
+import { buildInstruction } from "./instructions"
 
 function u8(input: ByteStream): U8 {
     return input.take_one()
@@ -261,8 +262,8 @@ function prototype(
 }
 
 function instruction(input: ByteStream): Instruction {
-    const [op, a, b, c] = tuple(u8, u8, u8, u8)(input)
-    return { op, a, b, c }
+    // TODO: Support BE
+    return buildInstruction(tuple(u8, u8, u8, u8)(input))
 }
 
 function upvalue(input: ByteStream): Upvalue {
@@ -271,6 +272,7 @@ function upvalue(input: ByteStream): Upvalue {
     const LOCAL_UV_VAL_MASK = ~UV_LOCAL_MASK & ~UV_IMMUTABLE_MASK
     const OUTER_UV_VAL_MASK = ~UV_LOCAL_MASK
 
+    // TODO: Support BE
     const val = u16(input)
 
     if ((val.value & UV_LOCAL_MASK) !== 0) {
@@ -370,6 +372,7 @@ function lineInfo(
     line_num: Uleb128,
     inst_num: Uleb128
 ): LineInfo {
+    // TODO: Support BE
     let int
     if (U8.inRange(line_num.value)) {
         int = u8
@@ -446,6 +449,7 @@ function debugInfo(
     inst_num: Uleb128,
     encoding: string
 ): DebugInfo {
+    // TODO: Verify the size of debug info
     const [line_info, upvalue_names, var_info] = tuple(
         call(lineInfo, first_line, line_num, inst_num),
         count(upvalues_num, call(null_end_string, encoding)),

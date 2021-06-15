@@ -9,6 +9,7 @@ import {
     U64,
     Uleb128_33,
 } from "./primitive"
+import type { Instruction as Instructions } from "./instructions"
 
 export type Magic = typeof MagicVal
 export const MagicVal: [0x1b, 0x4c, 0x4a] = [0x1b, 0x4c, 0x4a]
@@ -98,12 +99,7 @@ export interface Prototype {
     debug_info?: DebugInfo
 }
 
-export interface Instruction {
-    op: U8
-    a: U8
-    b: U8
-    c: U8
-}
+export type Instruction = Instructions
 
 /**
  * ```lua
