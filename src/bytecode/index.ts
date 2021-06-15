@@ -89,6 +89,7 @@ export interface Bytecode {
 }
 
 export interface Prototype {
+    type: "Prototype"
     flags: PtFlags
     params_num: U8
     frame_size: U8
@@ -114,6 +115,7 @@ export type Instruction = Instructions
  * ```
  */
 export interface OuterUpvalue {
+    type: "OuterUpvalue"
     ref: U15
 }
 
@@ -128,6 +130,7 @@ export interface OuterUpvalue {
  * ```
  */
 export interface LocalUpvalue {
+    type: "LocalUpvalue"
     mutable: boolean
     slot: U14
 }
@@ -135,23 +138,25 @@ export interface LocalUpvalue {
 export type Upvalue = OuterUpvalue | LocalUpvalue
 
 export interface Table {
+    type: "Table"
     array: TableItem[]
     hash: [TableItem, TableItem][]
 }
 
 export type Nil = {
-    mark: "nil"
+    type: "Nil"
 }
 export type False = {
-    mark: "false"
+    type: "False"
 }
 export type True = {
-    mark: "true"
+    type: "True"
 }
 
 export type TableItem = Nil | False | True | Uleb128 | F64 | string
 
 export interface Complex {
+    type: "Complex"
     x: F64
     y: F64
 }
@@ -176,11 +181,12 @@ export interface LineInfo {
 }
 
 export interface Var {
-    type: "var name"
+    type: "VarName"
     name: string
 }
 
 export interface VarInfo {
+    type: "VarInfo"
     kind:
         | "ForIndex"
         | "ForStop"

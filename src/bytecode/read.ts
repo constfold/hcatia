@@ -250,6 +250,7 @@ function prototype(
     }
 
     return {
+        type: "Prototype",
         flags,
         params_num,
         frame_size,
@@ -277,11 +278,13 @@ function upvalue(input: ByteStream): Upvalue {
 
     if ((val.value & UV_LOCAL_MASK) !== 0) {
         return {
+            type: "LocalUpvalue",
             mutable: (val.value & UV_IMMUTABLE_MASK) !== 0,
             slot: new U14(val.value & LOCAL_UV_VAL_MASK),
         }
     } else {
         return {
+            type: "OuterUpvalue",
             ref: new U15(val.value & OUTER_UV_VAL_MASK),
         }
     }
@@ -292,11 +295,11 @@ function tableItem(input: ByteStream, encoding: string): TableItem {
 
     let item: TableItem
     if (kind === 0) {
-        item = { mark: "nil" }
+        item = { type: "Nil" }
     } else if (kind === 1) {
-        item = { mark: "false" }
+        item = { type: "False" }
     } else if (kind === 2) {
-        item = { mark: "true" }
+        item = { type: "True" }
     } else if (kind === 3) {
         item = uleb128(input)
     } else if (kind === 4) {
@@ -319,6 +322,7 @@ function table(input: ByteStream, encoding: string): Table {
     )(input)
 
     return {
+        type: "Table",
         array,
         hash,
     }
@@ -346,6 +350,7 @@ function constantData(
         return u64(input)
     } else if (kind === 4) {
         return {
+            type: "Complex",
             x: f64(input),
             y: f64(input),
         }
@@ -393,7 +398,7 @@ function lineInfo(
 }
 
 function varInfo(input: ByteStream, encoding: string): VarInfo[] {
-    const v = []
+    const v: VarInfo[] = []
     let pc = 0
 
     for (;;) {
@@ -423,7 +428,7 @@ function varInfo(input: ByteStream, encoding: string): VarInfo[] {
             kind = "ForControl"
         } else {
             kind = {
-                type: "var name",
+                type: "VarName",
                 name: null_end_string(input, encoding),
             }
         }
@@ -433,6 +438,7 @@ function varInfo(input: ByteStream, encoding: string): VarInfo[] {
         pc += gap.value
 
         v.push({
+            type: "VarInfo",
             kind,
             start: new Uleb128(pc),
             range,
