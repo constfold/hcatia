@@ -51,7 +51,7 @@ function instruction(
 
     let s = sprintf(
         "%04d %s %-6s %3s ",
-        pc,
+        pc + 1,
         prefix,
         op.name,
         op.A.type === "none" ? "" : op.A.val.value
@@ -61,7 +61,7 @@ function instruction(
 
     if (op.type === "AD") {
         if (op.D.type === "jump") {
-            s = sprintf("%s=> %04d\n", s, op.D.val.value)
+            s = sprintf("%s=> %04d\n", s, jumpTarget(op.D.val.value, pc))
         } else if (op.D.type === "none") {
             // do nothing
         } else if (op.D.type === "lits" && op.D.val.value > 0x7fff) {
@@ -71,7 +71,7 @@ function instruction(
             s = sprintf("%s%3d\n", s, op.D.val.value)
         }
     } else {
-        s = sprintf("%s%3d %3d\n", s, op.B.val.value, op.C.val.value)
+        s = sprintf("%s%3d %3d\n", s, op.C.val.value, op.B.val.value)
     }
 
     write(s)
@@ -80,7 +80,7 @@ function instruction(
 function prototype(write: Write, pt: Prototype): void {
     // Write the header
     // TODO: Also write the filename and debug infomation as luaJIT did
-    write("-- BYTECODE --")
+    write("-- BYTECODE --\n")
 
     const instructions = pt.instructions
 
@@ -95,6 +95,7 @@ function prototype(write: Write, pt: Prototype): void {
 
         instruction(write, instructions, pc, prefix)
     }
+    write("\n")
 }
 
 function allChildren(root: Prototype): Prototype[] {
