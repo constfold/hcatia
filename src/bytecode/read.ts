@@ -148,7 +148,7 @@ export function bytecode(input: ByteStream, encoding = "utf8"): Bytecode {
     const [magic, version, flag] = tuple(
         signature,
         u8,
-        map(u32, (n) => new BcFlags(n))
+        map(uleb128, (n) => new BcFlags(n))
     )(input)
 
     const striped = flag.contains(BcFlags.IS_STRIPPED)

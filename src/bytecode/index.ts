@@ -15,9 +15,9 @@ export type Magic = typeof MagicVal
 export const MagicVal: [0x1b, 0x4c, 0x4a] = [0x1b, 0x4c, 0x4a]
 
 export class BcFlags {
-    static readonly IS_BIG_ENDIAN: BcFlags = new this(new U32(0b00000001))
-    static readonly IS_STRIPPED: BcFlags = new this(new U32(0b00000010))
-    static readonly HAS_FFI: BcFlags = new this(new U32(0b00000100))
+    static readonly IS_BIG_ENDIAN: BcFlags = new this(new Uleb128(0b00000001))
+    static readonly IS_STRIPPED: BcFlags = new this(new Uleb128(0b00000010))
+    static readonly HAS_FFI: BcFlags = new this(new Uleb128(0b00000100))
 
     private _bits: number
 
@@ -25,10 +25,10 @@ export class BcFlags {
         return this._bits
     }
 
-    constructor(bits: U32) {
+    constructor(bits: Uleb128) {
         const sum = 0b00000111
         if (bits.value > sum) {
-            throw new Error("")
+            throw new Error(`${bits.value} > ${sum}`)
         }
         this._bits = bits.value
     }
