@@ -61,7 +61,7 @@ export class PtFlags {
     constructor(bits: U8) {
         const sum = 0b00011111
         if (bits.value > sum) {
-            throw new Error("")
+            throw new Error(`${bits.value} > ${sum}`)
         }
         this._bits = bits.value
     }
