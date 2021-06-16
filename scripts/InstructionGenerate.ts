@@ -11,9 +11,49 @@ function isCommentOrBlank(s: string): boolean {
     return s.startsWith("/*") || s.startsWith("\\")
 }
 
-const AD = "\"A\" | \"D\""
-const ABC = "\"A\" | \"B\" | \"C\""
-type OpKind = typeof AD | typeof ABC
+const buildType = `
+type Operand<T extends OperandType, V> = {
+    type: T
+    val: V
+}
+
+type OperandType = "dst" | "var" | "str" | "num" | "pri" | "uv" | "lit" | "lits" | "cdata" | "jump" | "func" | "tab" | "base" | "rbase" | "none"
+
+type BuildOp<
+    OpName,
+    TypeA extends OperandType,
+    TypeB extends OperandType,
+    TypeC extends OperandType,
+    TypeD extends OperandType
+> = {
+    name: OpName
+    A: Operand<TypeA, U8>
+    B: Operand<TypeB, U8>
+    C: Operand<TypeC, U8>
+    D: Operand<TypeD, U16>
+}
+
+type BuildOpABC<
+    OpName,
+    TypeA extends OperandType,
+    TypeB extends OperandType,
+    TypeC extends OperandType
+> = Omit<BuildOp<OpName, TypeA, TypeB, TypeC, never>, "D"> & { type: "ABC" }
+type BuildOpAD<
+    OpName,
+    TypeA extends OperandType,
+    TypeD extends OperandType
+> = Omit<BuildOp<OpName, TypeA, never, never, TypeD>, "B" | "C"> & {
+    type: "AD"
+}
+`
+
+type OpKind = {
+    A: string,
+    B: string,
+    C: string
+}
+
 
 function readOp(s: string): [string, OpKind, boolean] {
     const end = !s.endsWith("\\")
@@ -22,7 +62,8 @@ function readOp(s: string): [string, OpKind, boolean] {
         throw new Error(`Unexpected line: ${s}`)
     }
 
-    const pattern = /^_\(([A-Z0-9]+),\s+([_a-z]+),\s+([_a-z]+),\s+([_a-z]+),\s+([_a-z]+)\)( \\)?$/
+    const pattern =
+        /^_\(([A-Z0-9]+),\s+([_a-z]+),\s+([_a-z]+),\s+([_a-z]+),\s+([_a-z]+)\)( \\)?$/
 
     const cap = s.match(pattern)
     if (cap === null) {
@@ -32,7 +73,19 @@ function readOp(s: string): [string, OpKind, boolean] {
     const [_, op, a, b, c, m] = cap
     /* eslint-enable */
 
-    const kind = b === "___" ? AD : ABC
+    const mapNone = (s: string): string => {
+        if (s === "___") {
+            return "none"
+        } else {
+            return s
+        }
+    }
+
+    const kind = {
+        A: mapNone(a),
+        B: mapNone(b),
+        C: mapNone(c)
+    }
 
     return [op, kind, end]
 }
@@ -66,46 +119,56 @@ function generateInstructions(data: Buffer): string {
 }
 
 function generate(v: [string, OpKind][]): string {
-    let types = ""
-    let inst = "export type Instruction = never"
+    const types = []
+    const ops = []
+    const matches = []
 
-    for (const [op, kind] of v) {
-        types += `export type ${op} = Pick<{
-            name: "${op}",
-            A: U8,
-            B: U8,
-            C: U8,
-            D: U16
-        }, "name" | ${kind}>
-        `
-        inst += `| ${op}`
-    }
-
-    let body = ""
     let i = 0
     for (const [op, kind] of v) {
-        let s: string
-        if (kind === AD) {
-            s = "D: new U16([B, C])"
+        let type
+        let match
+        if (kind.B === "none") {
+            // AD
+            type = `export type ${op} = BuildOpAD<"${op}", "${kind.A}", "${kind.C}">`
+            match = `type: "AD",
+            D: {
+                type: "${kind.C}",
+                val: new U16([B, C])
+            }`
         } else {
-            s = `B,
-            C`
+            type = `export type ${op} = BuildOpABC<"${op}", "${kind.A}", "${kind.B}", "${kind.C}">`
+            match = `type: "ABC",
+            B: {
+                type: "${kind.B}",
+                val: B
+            },
+            C: {
+                type: "${kind.C}",
+                val: C
+            }`
         }
-        body += `if (op.value === 0x${i.toString(16)}) {
+        ops.push(op)
+        types.push(type)
+        matches.push(`if (op.value === 0x${i.toString(16)}) {
             return {
                 name: "${op}",
-                A,
-                ${s}
+                A: {
+                    type: "${kind.A}",
+                    val: A
+                },
+                ${match}
             }
-        } else `
+        } else`)
+
         i++
     }
 
     return `${defaultImports}
-    ${types}
-    ${inst}
+    ${buildType}
+    ${types.join("\n")}
+    export type Instruction = ${ops.join("|")}
     export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
-        ${body}{
+        ${matches.join(" ")} {
             throw new Error(\`unknown op \${op.value}\`)
         }
     }

@@ -1,937 +1,149 @@
 import { U16, U8 } from "./primitive"
-export type ISLT = Pick<
-    {
-        name: "ISLT"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISGE = Pick<
-    {
-        name: "ISGE"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISLE = Pick<
-    {
-        name: "ISLE"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISGT = Pick<
-    {
-        name: "ISGT"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISEQV = Pick<
-    {
-        name: "ISEQV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISNEV = Pick<
-    {
-        name: "ISNEV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISEQS = Pick<
-    {
-        name: "ISEQS"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISNES = Pick<
-    {
-        name: "ISNES"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISEQN = Pick<
-    {
-        name: "ISEQN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISNEN = Pick<
-    {
-        name: "ISNEN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISEQP = Pick<
-    {
-        name: "ISEQP"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISNEP = Pick<
-    {
-        name: "ISNEP"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISTC = Pick<
-    {
-        name: "ISTC"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISFC = Pick<
-    {
-        name: "ISFC"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type IST = Pick<
-    {
-        name: "IST"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ISF = Pick<
-    {
-        name: "ISF"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type MOV = Pick<
-    {
-        name: "MOV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type NOT = Pick<
-    {
-        name: "NOT"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type UNM = Pick<
-    {
-        name: "UNM"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type LEN = Pick<
-    {
-        name: "LEN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ADDVN = Pick<
-    {
-        name: "ADDVN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type SUBVN = Pick<
-    {
-        name: "SUBVN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type MULVN = Pick<
-    {
-        name: "MULVN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type DIVVN = Pick<
-    {
-        name: "DIVVN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type MODVN = Pick<
-    {
-        name: "MODVN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type ADDNV = Pick<
-    {
-        name: "ADDNV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type SUBNV = Pick<
-    {
-        name: "SUBNV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type MULNV = Pick<
-    {
-        name: "MULNV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type DIVNV = Pick<
-    {
-        name: "DIVNV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type MODNV = Pick<
-    {
-        name: "MODNV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type ADDVV = Pick<
-    {
-        name: "ADDVV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type SUBVV = Pick<
-    {
-        name: "SUBVV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type MULVV = Pick<
-    {
-        name: "MULVV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type DIVVV = Pick<
-    {
-        name: "DIVVV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type MODVV = Pick<
-    {
-        name: "MODVV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type POW = Pick<
-    {
-        name: "POW"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type CAT = Pick<
-    {
-        name: "CAT"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type KSTR = Pick<
-    {
-        name: "KSTR"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type KCDATA = Pick<
-    {
-        name: "KCDATA"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type KSHORT = Pick<
-    {
-        name: "KSHORT"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type KNUM = Pick<
-    {
-        name: "KNUM"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type KPRI = Pick<
-    {
-        name: "KPRI"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type KNIL = Pick<
-    {
-        name: "KNIL"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type UGET = Pick<
-    {
-        name: "UGET"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type USETV = Pick<
-    {
-        name: "USETV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type USETS = Pick<
-    {
-        name: "USETS"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type USETN = Pick<
-    {
-        name: "USETN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type USETP = Pick<
-    {
-        name: "USETP"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type UCLO = Pick<
-    {
-        name: "UCLO"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type FNEW = Pick<
-    {
-        name: "FNEW"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type TNEW = Pick<
-    {
-        name: "TNEW"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type TDUP = Pick<
-    {
-        name: "TDUP"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type GGET = Pick<
-    {
-        name: "GGET"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type GSET = Pick<
-    {
-        name: "GSET"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type TGETV = Pick<
-    {
-        name: "TGETV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type TGETS = Pick<
-    {
-        name: "TGETS"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type TGETB = Pick<
-    {
-        name: "TGETB"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type TSETV = Pick<
-    {
-        name: "TSETV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type TSETS = Pick<
-    {
-        name: "TSETS"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type TSETB = Pick<
-    {
-        name: "TSETB"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type TSETM = Pick<
-    {
-        name: "TSETM"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type CALLM = Pick<
-    {
-        name: "CALLM"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type CALL = Pick<
-    {
-        name: "CALL"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type CALLMT = Pick<
-    {
-        name: "CALLMT"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type CALLT = Pick<
-    {
-        name: "CALLT"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ITERC = Pick<
-    {
-        name: "ITERC"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type ITERN = Pick<
-    {
-        name: "ITERN"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type VARG = Pick<
-    {
-        name: "VARG"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "B" | "C"
->
-export type ISNEXT = Pick<
-    {
-        name: "ISNEXT"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type RETM = Pick<
-    {
-        name: "RETM"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type RET = Pick<
-    {
-        name: "RET"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type RET0 = Pick<
-    {
-        name: "RET0"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type RET1 = Pick<
-    {
-        name: "RET1"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type FORI = Pick<
-    {
-        name: "FORI"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type JFORI = Pick<
-    {
-        name: "JFORI"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type FORL = Pick<
-    {
-        name: "FORL"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type IFORL = Pick<
-    {
-        name: "IFORL"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type JFORL = Pick<
-    {
-        name: "JFORL"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ITERL = Pick<
-    {
-        name: "ITERL"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type IITERL = Pick<
-    {
-        name: "IITERL"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type JITERL = Pick<
-    {
-        name: "JITERL"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type LOOP = Pick<
-    {
-        name: "LOOP"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type ILOOP = Pick<
-    {
-        name: "ILOOP"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type JLOOP = Pick<
-    {
-        name: "JLOOP"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type JMP = Pick<
-    {
-        name: "JMP"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type FUNCF = Pick<
-    {
-        name: "FUNCF"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type IFUNCF = Pick<
-    {
-        name: "IFUNCF"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type JFUNCF = Pick<
-    {
-        name: "JFUNCF"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type FUNCV = Pick<
-    {
-        name: "FUNCV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type IFUNCV = Pick<
-    {
-        name: "IFUNCV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type JFUNCV = Pick<
-    {
-        name: "JFUNCV"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type FUNCC = Pick<
-    {
-        name: "FUNCC"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
-export type FUNCCW = Pick<
-    {
-        name: "FUNCCW"
-        A: U8
-        B: U8
-        C: U8
-        D: U16
-    },
-    "name" | "A" | "D"
->
 
+type Operand<T extends OperandType, V> = {
+    type: T
+    val: V
+}
+
+type OperandType =
+    | "dst"
+    | "var"
+    | "str"
+    | "num"
+    | "pri"
+    | "uv"
+    | "lit"
+    | "lits"
+    | "cdata"
+    | "jump"
+    | "func"
+    | "tab"
+    | "base"
+    | "rbase"
+    | "none"
+
+type BuildOp<
+    OpName,
+    TypeA extends OperandType,
+    TypeB extends OperandType,
+    TypeC extends OperandType,
+    TypeD extends OperandType
+> = {
+    name: OpName
+    A: Operand<TypeA, U8>
+    B: Operand<TypeB, U8>
+    C: Operand<TypeC, U8>
+    D: Operand<TypeD, U16>
+}
+
+type BuildOpABC<
+    OpName,
+    TypeA extends OperandType,
+    TypeB extends OperandType,
+    TypeC extends OperandType
+> = Omit<BuildOp<OpName, TypeA, TypeB, TypeC, never>, "D"> & { type: "ABC" }
+type BuildOpAD<
+    OpName,
+    TypeA extends OperandType,
+    TypeD extends OperandType
+> = Omit<BuildOp<OpName, TypeA, never, never, TypeD>, "B" | "C"> & {
+    type: "AD"
+}
+
+export type ISLT = BuildOpAD<"ISLT", "var", "var">
+export type ISGE = BuildOpAD<"ISGE", "var", "var">
+export type ISLE = BuildOpAD<"ISLE", "var", "var">
+export type ISGT = BuildOpAD<"ISGT", "var", "var">
+export type ISEQV = BuildOpAD<"ISEQV", "var", "var">
+export type ISNEV = BuildOpAD<"ISNEV", "var", "var">
+export type ISEQS = BuildOpAD<"ISEQS", "var", "str">
+export type ISNES = BuildOpAD<"ISNES", "var", "str">
+export type ISEQN = BuildOpAD<"ISEQN", "var", "num">
+export type ISNEN = BuildOpAD<"ISNEN", "var", "num">
+export type ISEQP = BuildOpAD<"ISEQP", "var", "pri">
+export type ISNEP = BuildOpAD<"ISNEP", "var", "pri">
+export type ISTC = BuildOpAD<"ISTC", "dst", "var">
+export type ISFC = BuildOpAD<"ISFC", "dst", "var">
+export type IST = BuildOpAD<"IST", "none", "var">
+export type ISF = BuildOpAD<"ISF", "none", "var">
+export type MOV = BuildOpAD<"MOV", "dst", "var">
+export type NOT = BuildOpAD<"NOT", "dst", "var">
+export type UNM = BuildOpAD<"UNM", "dst", "var">
+export type LEN = BuildOpAD<"LEN", "dst", "var">
+export type ADDVN = BuildOpABC<"ADDVN", "dst", "var", "num">
+export type SUBVN = BuildOpABC<"SUBVN", "dst", "var", "num">
+export type MULVN = BuildOpABC<"MULVN", "dst", "var", "num">
+export type DIVVN = BuildOpABC<"DIVVN", "dst", "var", "num">
+export type MODVN = BuildOpABC<"MODVN", "dst", "var", "num">
+export type ADDNV = BuildOpABC<"ADDNV", "dst", "var", "num">
+export type SUBNV = BuildOpABC<"SUBNV", "dst", "var", "num">
+export type MULNV = BuildOpABC<"MULNV", "dst", "var", "num">
+export type DIVNV = BuildOpABC<"DIVNV", "dst", "var", "num">
+export type MODNV = BuildOpABC<"MODNV", "dst", "var", "num">
+export type ADDVV = BuildOpABC<"ADDVV", "dst", "var", "var">
+export type SUBVV = BuildOpABC<"SUBVV", "dst", "var", "var">
+export type MULVV = BuildOpABC<"MULVV", "dst", "var", "var">
+export type DIVVV = BuildOpABC<"DIVVV", "dst", "var", "var">
+export type MODVV = BuildOpABC<"MODVV", "dst", "var", "var">
+export type POW = BuildOpABC<"POW", "dst", "var", "var">
+export type CAT = BuildOpABC<"CAT", "dst", "rbase", "rbase">
+export type KSTR = BuildOpAD<"KSTR", "dst", "str">
+export type KCDATA = BuildOpAD<"KCDATA", "dst", "cdata">
+export type KSHORT = BuildOpAD<"KSHORT", "dst", "lits">
+export type KNUM = BuildOpAD<"KNUM", "dst", "num">
+export type KPRI = BuildOpAD<"KPRI", "dst", "pri">
+export type KNIL = BuildOpAD<"KNIL", "base", "base">
+export type UGET = BuildOpAD<"UGET", "dst", "uv">
+export type USETV = BuildOpAD<"USETV", "uv", "var">
+export type USETS = BuildOpAD<"USETS", "uv", "str">
+export type USETN = BuildOpAD<"USETN", "uv", "num">
+export type USETP = BuildOpAD<"USETP", "uv", "pri">
+export type UCLO = BuildOpAD<"UCLO", "rbase", "jump">
+export type FNEW = BuildOpAD<"FNEW", "dst", "func">
+export type TNEW = BuildOpAD<"TNEW", "dst", "lit">
+export type TDUP = BuildOpAD<"TDUP", "dst", "tab">
+export type GGET = BuildOpAD<"GGET", "dst", "str">
+export type GSET = BuildOpAD<"GSET", "var", "str">
+export type TGETV = BuildOpABC<"TGETV", "dst", "var", "var">
+export type TGETS = BuildOpABC<"TGETS", "dst", "var", "str">
+export type TGETB = BuildOpABC<"TGETB", "dst", "var", "lit">
+export type TSETV = BuildOpABC<"TSETV", "var", "var", "var">
+export type TSETS = BuildOpABC<"TSETS", "var", "var", "str">
+export type TSETB = BuildOpABC<"TSETB", "var", "var", "lit">
+export type TSETM = BuildOpAD<"TSETM", "base", "num">
+export type CALLM = BuildOpABC<"CALLM", "base", "lit", "lit">
+export type CALL = BuildOpABC<"CALL", "base", "lit", "lit">
+export type CALLMT = BuildOpAD<"CALLMT", "base", "lit">
+export type CALLT = BuildOpAD<"CALLT", "base", "lit">
+export type ITERC = BuildOpABC<"ITERC", "base", "lit", "lit">
+export type ITERN = BuildOpABC<"ITERN", "base", "lit", "lit">
+export type VARG = BuildOpABC<"VARG", "base", "lit", "lit">
+export type ISNEXT = BuildOpAD<"ISNEXT", "base", "jump">
+export type RETM = BuildOpAD<"RETM", "base", "lit">
+export type RET = BuildOpAD<"RET", "rbase", "lit">
+export type RET0 = BuildOpAD<"RET0", "rbase", "lit">
+export type RET1 = BuildOpAD<"RET1", "rbase", "lit">
+export type FORI = BuildOpAD<"FORI", "base", "jump">
+export type JFORI = BuildOpAD<"JFORI", "base", "jump">
+export type FORL = BuildOpAD<"FORL", "base", "jump">
+export type IFORL = BuildOpAD<"IFORL", "base", "jump">
+export type JFORL = BuildOpAD<"JFORL", "base", "lit">
+export type ITERL = BuildOpAD<"ITERL", "base", "jump">
+export type IITERL = BuildOpAD<"IITERL", "base", "jump">
+export type JITERL = BuildOpAD<"JITERL", "base", "lit">
+export type LOOP = BuildOpAD<"LOOP", "rbase", "jump">
+export type ILOOP = BuildOpAD<"ILOOP", "rbase", "jump">
+export type JLOOP = BuildOpAD<"JLOOP", "rbase", "lit">
+export type JMP = BuildOpAD<"JMP", "rbase", "jump">
+export type FUNCF = BuildOpAD<"FUNCF", "rbase", "none">
+export type IFUNCF = BuildOpAD<"IFUNCF", "rbase", "none">
+export type JFUNCF = BuildOpAD<"JFUNCF", "rbase", "lit">
+export type FUNCV = BuildOpAD<"FUNCV", "rbase", "none">
+export type IFUNCV = BuildOpAD<"IFUNCV", "rbase", "none">
+export type JFUNCV = BuildOpAD<"JFUNCV", "rbase", "lit">
+export type FUNCC = BuildOpAD<"FUNCC", "rbase", "none">
+export type FUNCCW = BuildOpAD<"FUNCCW", "rbase", "none">
 export type Instruction =
-    | never
     | ISLT
     | ISGE
     | ISLE
@@ -1029,588 +241,1323 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
     if (op.value === 0x0) {
         return {
             name: "ISLT",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x1) {
         return {
             name: "ISGE",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x2) {
         return {
             name: "ISLE",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x3) {
         return {
             name: "ISGT",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x4) {
         return {
             name: "ISEQV",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x5) {
         return {
             name: "ISNEV",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x6) {
         return {
             name: "ISEQS",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "str",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x7) {
         return {
             name: "ISNES",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "str",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x8) {
         return {
             name: "ISEQN",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "num",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x9) {
         return {
             name: "ISNEN",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "num",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0xa) {
         return {
             name: "ISEQP",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "pri",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0xb) {
         return {
             name: "ISNEP",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "pri",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0xc) {
         return {
             name: "ISTC",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0xd) {
         return {
             name: "ISFC",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0xe) {
         return {
             name: "IST",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "none",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0xf) {
         return {
             name: "ISF",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "none",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x10) {
         return {
             name: "MOV",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x11) {
         return {
             name: "NOT",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x12) {
         return {
             name: "UNM",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x13) {
         return {
             name: "LEN",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x14) {
         return {
             name: "ADDVN",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x15) {
         return {
             name: "SUBVN",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x16) {
         return {
             name: "MULVN",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x17) {
         return {
             name: "DIVVN",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x18) {
         return {
             name: "MODVN",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x19) {
         return {
             name: "ADDNV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x1a) {
         return {
             name: "SUBNV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x1b) {
         return {
             name: "MULNV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x1c) {
         return {
             name: "DIVNV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x1d) {
         return {
             name: "MODNV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "num",
+                val: C,
+            },
         }
     } else if (op.value === 0x1e) {
         return {
             name: "ADDVV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "var",
+                val: C,
+            },
         }
     } else if (op.value === 0x1f) {
         return {
             name: "SUBVV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "var",
+                val: C,
+            },
         }
     } else if (op.value === 0x20) {
         return {
             name: "MULVV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "var",
+                val: C,
+            },
         }
     } else if (op.value === 0x21) {
         return {
             name: "DIVVV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "var",
+                val: C,
+            },
         }
     } else if (op.value === 0x22) {
         return {
             name: "MODVV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "var",
+                val: C,
+            },
         }
     } else if (op.value === 0x23) {
         return {
             name: "POW",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "var",
+                val: C,
+            },
         }
     } else if (op.value === 0x24) {
         return {
             name: "CAT",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "rbase",
+                val: B,
+            },
+            C: {
+                type: "rbase",
+                val: C,
+            },
         }
     } else if (op.value === 0x25) {
         return {
             name: "KSTR",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "str",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x26) {
         return {
             name: "KCDATA",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "cdata",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x27) {
         return {
             name: "KSHORT",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lits",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x28) {
         return {
             name: "KNUM",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "num",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x29) {
         return {
             name: "KPRI",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "pri",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x2a) {
         return {
             name: "KNIL",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "base",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x2b) {
         return {
             name: "UGET",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "uv",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x2c) {
         return {
             name: "USETV",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "uv",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "var",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x2d) {
         return {
             name: "USETS",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "uv",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "str",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x2e) {
         return {
             name: "USETN",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "uv",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "num",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x2f) {
         return {
             name: "USETP",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "uv",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "pri",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x30) {
         return {
             name: "UCLO",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x31) {
         return {
             name: "FNEW",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "func",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x32) {
         return {
             name: "TNEW",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x33) {
         return {
             name: "TDUP",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "tab",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x34) {
         return {
             name: "GGET",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "str",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x35) {
         return {
             name: "GSET",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "str",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x36) {
         return {
             name: "TGETV",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "var",
+                val: C,
+            },
         }
     } else if (op.value === 0x37) {
         return {
             name: "TGETS",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "str",
+                val: C,
+            },
         }
     } else if (op.value === 0x38) {
         return {
             name: "TGETB",
-            A,
-            B,
-            C,
+            A: {
+                type: "dst",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "lit",
+                val: C,
+            },
         }
     } else if (op.value === 0x39) {
         return {
             name: "TSETV",
-            A,
-            B,
-            C,
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "var",
+                val: C,
+            },
         }
     } else if (op.value === 0x3a) {
         return {
             name: "TSETS",
-            A,
-            B,
-            C,
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "str",
+                val: C,
+            },
         }
     } else if (op.value === 0x3b) {
         return {
             name: "TSETB",
-            A,
-            B,
-            C,
+            A: {
+                type: "var",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "var",
+                val: B,
+            },
+            C: {
+                type: "lit",
+                val: C,
+            },
         }
     } else if (op.value === 0x3c) {
         return {
             name: "TSETM",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "num",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x3d) {
         return {
             name: "CALLM",
-            A,
-            B,
-            C,
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "lit",
+                val: B,
+            },
+            C: {
+                type: "lit",
+                val: C,
+            },
         }
     } else if (op.value === 0x3e) {
         return {
             name: "CALL",
-            A,
-            B,
-            C,
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "lit",
+                val: B,
+            },
+            C: {
+                type: "lit",
+                val: C,
+            },
         }
     } else if (op.value === 0x3f) {
         return {
             name: "CALLMT",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x40) {
         return {
             name: "CALLT",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x41) {
         return {
             name: "ITERC",
-            A,
-            B,
-            C,
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "lit",
+                val: B,
+            },
+            C: {
+                type: "lit",
+                val: C,
+            },
         }
     } else if (op.value === 0x42) {
         return {
             name: "ITERN",
-            A,
-            B,
-            C,
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "lit",
+                val: B,
+            },
+            C: {
+                type: "lit",
+                val: C,
+            },
         }
     } else if (op.value === 0x43) {
         return {
             name: "VARG",
-            A,
-            B,
-            C,
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "ABC",
+            B: {
+                type: "lit",
+                val: B,
+            },
+            C: {
+                type: "lit",
+                val: C,
+            },
         }
     } else if (op.value === 0x44) {
         return {
             name: "ISNEXT",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x45) {
         return {
             name: "RETM",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x46) {
         return {
             name: "RET",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x47) {
         return {
             name: "RET0",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x48) {
         return {
             name: "RET1",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x49) {
         return {
             name: "FORI",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x4a) {
         return {
             name: "JFORI",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x4b) {
         return {
             name: "FORL",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x4c) {
         return {
             name: "IFORL",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x4d) {
         return {
             name: "JFORL",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x4e) {
         return {
             name: "ITERL",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x4f) {
         return {
             name: "IITERL",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x50) {
         return {
             name: "JITERL",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "base",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x51) {
         return {
             name: "LOOP",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x52) {
         return {
             name: "ILOOP",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x53) {
         return {
             name: "JLOOP",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x54) {
         return {
             name: "JMP",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "jump",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x55) {
         return {
             name: "FUNCF",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "none",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x56) {
         return {
             name: "IFUNCF",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "none",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x57) {
         return {
             name: "JFUNCF",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x58) {
         return {
             name: "FUNCV",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "none",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x59) {
         return {
             name: "IFUNCV",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "none",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x5a) {
         return {
             name: "JFUNCV",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "lit",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x5b) {
         return {
             name: "FUNCC",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "none",
+                val: new U16([B, C]),
+            },
         }
     } else if (op.value === 0x5c) {
         return {
             name: "FUNCCW",
-            A,
-            D: new U16([B, C]),
+            A: {
+                type: "rbase",
+                val: A,
+            },
+            type: "AD",
+            D: {
+                type: "none",
+                val: new U16([B, C]),
+            },
         }
     } else {
         throw new Error(`unknown op ${op.value}`)
