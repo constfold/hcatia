@@ -33,7 +33,7 @@ export class BcFlags {
     }
 
     contains(flags: this): boolean {
-        return (this._bits & flags._bits) !== flags._bits
+        return (this._bits & flags._bits) === flags._bits
     }
 
     set(flags: this): void {
@@ -67,7 +67,7 @@ export class PtFlags {
     }
 
     contains(flags: this): boolean {
-        return (this._bits & flags._bits) !== flags._bits
+        return (this._bits & flags._bits) === flags._bits
     }
 
     set(flags: this): void {
