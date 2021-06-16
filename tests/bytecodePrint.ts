@@ -36,7 +36,7 @@ class BufferStream {
 const cases = ["./tests/cases/hello.lua"]
 
 const modify = (out: string): string => {
-    return out.replace(/^(-- BYTECODE --).+$/, "$1").replace(/;.+$/, "")
+    return out.replace(/^(-- BYTECODE --).+$/gm, "$1").replace(/^([A-Z0-9 ]+\d)\s+;.+$/gm, "$1")
 }
 
 describe.each(cases)("read bytecode %s", (filename) => {
