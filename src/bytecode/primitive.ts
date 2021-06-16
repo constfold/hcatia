@@ -44,12 +44,12 @@ export class U32 {
                 throw new Error("number not in rnage")
             }
         } else {
-            let val = bytes[0].value
+            let val = bytes[3].value
 
             // TODO: BE
-            val = (val << 8) | bytes[1].value
             val = (val << 8) | bytes[2].value
-            val = (val << 8) | bytes[3].value
+            val = (val << 8) | bytes[1].value
+            val = (val << 8) | bytes[0].value
 
             this.inner = val
         }
@@ -167,10 +167,10 @@ export class U16 {
                 throw new Error("number not in rnage")
             }
         } else {
-            let val = bytes[0].value
+            let val = bytes[1].value
 
             // TODO: BE
-            val = (val << 8) | bytes[1].value
+            val = (val << 8) | bytes[0].value
 
             this.inner = val
         }
