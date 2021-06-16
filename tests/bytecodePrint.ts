@@ -56,7 +56,7 @@ describe.each(cases)("read bytecode %s", (filename) => {
     
             expect(buf).toBe(modify(stdout))
         } finally {
-            // execSync(`rm ${compiled}`)
+            execSync(`rm ${compiled}`)
         }
     })
 })
