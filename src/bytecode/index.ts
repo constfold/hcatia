@@ -1,6 +1,5 @@
 import {
     U8,
-    U32,
     Uleb128,
     I64,
     F64,
