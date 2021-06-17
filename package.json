@@ -5,6 +5,9 @@
     "main": "./build/main.js",
     "scripts": {
         "test": "jest",
+        "lint": "npm run lint:eslint && npm run lint:prettier",
+        "lint:eslint": "eslint .",
+        "lint:prettier": "prettier --check .",
         "gen:inst": "tsc --build scripts/tsconfig.json && rm src/bytecode/instructions.ts && node build/scripts/InstructionGenerate.js > src/bytecode/instructions.ts && eslint --fix src/bytecode/instructions.ts && prettier -w src/bytecode/instructions.ts"
     },
     "author": "",
