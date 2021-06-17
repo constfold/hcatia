@@ -1,13 +1,4 @@
-import {
-    U8,
-    Uleb128,
-    I64,
-    F64,
-    U14,
-    U15,
-    U64,
-    Uleb128_33,
-} from "./primitive"
+import { U8, Uleb128, I64, F64, U14, U15, U64, Uleb128_33 } from "./primitive"
 import type { Instruction as Instructions } from "./instructions"
 
 export type Magic = typeof MagicVal

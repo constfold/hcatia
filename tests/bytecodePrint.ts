@@ -32,28 +32,31 @@ class BufferStream {
     }
 }
 
-
 const cases = ["./tests/cases/hello.lua"]
 
 const modify = (out: string): string => {
-    return out.replace(/^(-- BYTECODE --).+$/gm, "$1").replace(/^([A-Z0-9 ]+\d)\s+;.+$/gm, "$1")
+    return out
+        .replace(/^(-- BYTECODE --).+$/gm, "$1")
+        .replace(/^([A-Z0-9 ]+\d)\s+;.+$/gm, "$1")
 }
 
 describe.each(cases)("read bytecode %s", (filename) => {
     test("print same instructions", () => {
         const lua = path.resolve(filename)
         const compiled = `${lua}.bc`
-        const stdout = execSync(`cd ${luaJitPath} && ./luajit -bg ${lua} ${compiled} && ./luajit -bl ${compiled}`).toString()
+        const stdout = execSync(
+            `cd ${luaJitPath} && ./luajit -bg ${lua} ${compiled} && ./luajit -bl ${compiled}`
+        ).toString()
 
         try {
             let buf = ""
             const write = (s: string) => (buf += s)
-    
+
             const stream = new BufferStream(fs.readFileSync(compiled))
             const bc = read.bytecode(stream)
-    
+
             bcp.bytecode(write, bc)
-    
+
             expect(buf).toBe(modify(stdout))
         } finally {
             execSync(`rm ${compiled}`)

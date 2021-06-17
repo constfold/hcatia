@@ -49,11 +49,10 @@ type BuildOpAD<
 `
 
 type OpKind = {
-    A: string,
-    B: string,
+    A: string
+    B: string
     C: string
 }
-
 
 function readOp(s: string): [string, OpKind, boolean] {
     const end = !s.endsWith("\\")
@@ -84,7 +83,7 @@ function readOp(s: string): [string, OpKind, boolean] {
     const kind = {
         A: mapNone(a),
         B: mapNone(b),
-        C: mapNone(c)
+        C: mapNone(c),
     }
 
     return [op, kind, end]
