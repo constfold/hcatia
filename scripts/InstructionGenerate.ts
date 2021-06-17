@@ -1,6 +1,6 @@
 import fs = require("fs")
 
-const bcFilename = ".luajit/src/lj_bc.h"
+const bcFilename = `${process.env["luajit-src"]}/lj_bc.h`
 
 const defaultImports = `import { 
     U16, 
