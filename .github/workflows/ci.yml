@@ -41,6 +41,6 @@ jobs:
     - run: npm ci
     - name: Generate bytecode instructions for ${{ matrix.luajit-version }}
       env: 
-        LUAJIT_SRC: ./.lua/${{ matrix.os }}/src
+        LUAJIT_SRC: ./.lua/${{ matrix.luajit-version }}/src
       run: npm run gen:inst
     - run: npm test
