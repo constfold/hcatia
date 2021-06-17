@@ -5,7 +5,7 @@ import fs from "fs"
 import * as path from "path"
 import { U8 } from "../src/bytecode/primitive"
 
-const luaJitPath = process.env["luajit-src"]
+const luaJitPath = process.env.LUAJIT_SRC
 
 class BufferStream {
     buf: Buffer
