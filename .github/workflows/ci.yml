@@ -22,9 +22,6 @@ jobs:
     
     runs-on: ${{ matrix.os }}
     
-    env:
-      luajit-src: ./.lua/${{ matrix.os }}/src
-    
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -43,5 +40,7 @@ jobs:
         luaVersion: ${{ matrix.luajit-version }}
     - run: npm ci
     - name: Generate bytecode instructions for ${{ matrix.luajit-version }}
+      env: 
+        LUAJIT_SRC: ./.lua/${{ matrix.os }}/src
       run: npm run gen:inst
     - run: npm test
