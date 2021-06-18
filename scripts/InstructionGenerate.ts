@@ -132,7 +132,7 @@ function generate(v: [string, OpKind][]): string {
             match = `type: "AD",
             D: {
                 type: "${kind.C}",
-                val: new U16([B, C])
+                val: new U16([C, B])
             }`
         } else {
             type = `export type ${op} = BuildOpABC<"${op}", "${kind.A}", "${kind.B}", "${kind.C}">`
@@ -166,7 +166,7 @@ function generate(v: [string, OpKind][]): string {
     ${buildType}
     ${types.join("\n")}
     export type Instruction = ${ops.join("|")}
-    export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
+    export function buildInstruction([op, A, C, B]: [U8, U8, U8, U8]): Instruction {
         ${matches.join(" ")} {
             throw new Error(\`unknown op \${op.value}\`)
         }

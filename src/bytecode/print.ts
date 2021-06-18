@@ -71,7 +71,7 @@ function instruction(
             s = sprintf("%s%3d\n", s, op.D.val.value)
         }
     } else {
-        s = sprintf("%s%3d %3d\n", s, op.C.val.value, op.B.val.value)
+        s = sprintf("%s%3d %3d\n", s, op.B.val.value, op.C.val.value)
     }
 
     write(s)
