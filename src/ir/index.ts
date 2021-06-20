@@ -1,4 +1,4 @@
-import { False, Nil, True, ConstantData, ConstantNumber } from "../bytecode"
+import { False, Nil, True, ConstantData, ConstantNumber, Prototype } from "../bytecode"
 
 /**
  * The Lua file
@@ -17,8 +17,8 @@ interface Fn {
     instructions: Instruction[]
 }
 
-interface Symbols {
-    data: ConstantData[]
+export interface Symbols {
+    data: (Exclude<ConstantData, Prototype> | Fn)[]
     numbers: ConstantNumber[]
 }
 
