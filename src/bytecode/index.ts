@@ -74,7 +74,7 @@ export interface Bytecode {
     magic: Magic
     version: U8
     flag: BcFlags
-    filename?: string
+    filename: string
     root: Prototype
 }
 
