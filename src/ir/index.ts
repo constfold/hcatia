@@ -23,16 +23,16 @@ export interface Symbols {
     numbers: ConstantNumber[]
 }
 
-type Instruction = If | Assign | Call | Loop | Ret | Jump
+export type Instruction = If | Assign | Call | Loop | Ret | Jump
 
-interface If {
+export interface If {
     type: "If"
     cond: Cond
     thenBranch: number
     elseBranch: number
 }
 
-interface Assign {
+export interface Assign {
     type: "Assign"
     dst: Dst
     src: Src
@@ -42,7 +42,7 @@ interface Assign {
  * A normal function call. Call instructions that having extra infomation like `CALL`, `CALLT`
  * will be translated to `Assign` or `RetCall` plus this
  */
-interface Call {
+export interface Call {
     type: "Call"
     f: Var
     args: Var[]
@@ -50,32 +50,32 @@ interface Call {
 
 type Ret = RetVar | RetCall
 
-interface RetVar {
+export interface RetVar {
     type: "RetVar"
     vars: Var[]
 }
 
-interface RetCall {
+export interface RetCall {
     type: "RetCall"
     call: Call
 }
 
-type Loop = ForNum | ForIn | While | Repeat
+export type Loop = ForNum | ForIn | While | Repeat
 
-interface Jump {
+export interface Jump {
     type: "Jump"
     target: number
 }
 
-interface Cond {
+export interface Cond {
     type: "Lt" | "Ge" | "Le" | "Gt" | "Eq" | "Ne"
     left: number
     right: number
 }
 
-type Dst = Var | Upvalue | Table | Global | VarList
+export type Dst = Var | Upvalue | Table | Global | VarList
 
-type Src =
+export type Src =
     | Var
     | Upvalue
     | Table
@@ -94,38 +94,38 @@ type Src =
     | SrcSelf
     | SrcList
 
-interface SrcList {
+export interface SrcList {
     type: "SrcList"
     srcs: Src[]
 }
 
-interface SrcSelf {
+export interface SrcSelf {
     type: "Src"
     src: Src
 }
 
-interface VarList {
+export interface VarList {
     type: "VarList"
     vars: Var[]
 }
 
-interface Var {
+export interface Var {
     type: "Var"
     slot: number
 }
 
-interface Upvalue {
+export interface Upvalue {
     type: "Upvalue"
     idx: number
 }
 
-interface Table {
+export interface Table {
     type: "Table"
     table: Src
     key: Src
 }
 
-interface Global {
+export interface Global {
     type: "Global"
     varName: StringConst
 }
@@ -133,17 +133,17 @@ interface Global {
 /**
  * Literal number including both unsigned and signed.
  */
-interface Lit {
+export interface Lit {
     type: "Lit"
     val: number
 }
 
-interface Func {
+export interface Func {
     type: "Func"
     idx: number
 }
 
-interface StringConst {
+export interface StringConst {
     type: "StringConst"
     idx: number
 }
@@ -151,52 +151,52 @@ interface StringConst {
 /**
  * Constant data including `I64 | U64 | Complex`
  */
-interface ConstData {
+export interface ConstData {
     type: "CDataConst"
     idx: number
 }
 
-interface NumConst {
+export interface NumConst {
     type: "NumConst"
     idx: number
 }
 
-interface Pri {
+export interface Pri {
     type: "Pri"
     val: True | False | Nil
 }
 
-interface TableConst {
+export interface TableConst {
     type: "TableConst"
     idx: number
 }
 
-interface Cat {
+export interface Cat {
     type: "Cat"
     slotStart: number
     slotEnd: number
 }
 
-interface NewTable {
+export interface NewTable {
     type: "NewTable"
     arraySize: number
     hashSize: number
 }
 
-type Op = BinaryOp | UnaryOp
+export type Op = BinaryOp | UnaryOp
 
-interface BinaryOp {
+export interface BinaryOp {
     type: "Add" | "Sub" | "Mul" | "Div" | "Mod" | "Pow"
     left: Var
     right: Src
 }
 
-interface UnaryOp {
+export interface UnaryOp {
     type: "Not" | "Unm" | "Len"
     expr: Src
 }
 
-interface ForNum {
+export interface ForNum {
     type: "ForNum"
     start: Src
     stop: Src
@@ -205,7 +205,7 @@ interface ForNum {
     branch: number
 }
 
-interface ForIn {
+export interface ForIn {
     type: "ForIter"
     func: Src
     state: Src
@@ -213,13 +213,13 @@ interface ForIn {
     branch: number
 }
 
-interface While {
+export interface While {
     type: "While"
     cond: Cond
     branch: number
 }
 
-interface Repeat {
+export interface Repeat {
     type: "Repeat"
     cond: Cond
     branch: number
