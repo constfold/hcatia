@@ -9,8 +9,9 @@ export interface File {
 }
 
 // TODO: Use debuginfo
-interface Fn {
-    parant: Fn | null
+export interface Fn {
+    type: "Fn"
+    parent: Fn | undefined
     paramsNum: number
     variadic: boolean
     symbols: Symbols
