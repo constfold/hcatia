@@ -1,11 +1,11 @@
 import { U16, U8 } from "./primitive"
 
-type Operand<T extends OperandType, V> = {
+export type Operand<T extends OperandType, V> = {
     type: T
     val: V
 }
 
-type OperandType =
+export type OperandType =
     | "dst"
     | "var"
     | "str"

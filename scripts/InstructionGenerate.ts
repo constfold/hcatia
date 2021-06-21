@@ -12,12 +12,12 @@ function isCommentOrBlank(s: string): boolean {
 }
 
 const buildType = `
-type Operand<T extends OperandType, V> = {
+export type Operand<T extends OperandType, V> = {
     type: T
     val: V
 }
 
-type OperandType = "dst" | "var" | "str" | "num" | "pri" | "uv" | "lit" | "lits" | "cdata" | "jump" | "func" | "tab" | "base" | "rbase" | "none"
+export type OperandType = "dst" | "var" | "str" | "num" | "pri" | "uv" | "lit" | "lits" | "cdata" | "jump" | "func" | "tab" | "base" | "rbase" | "none"
 
 type BuildOp<
     OpName,
