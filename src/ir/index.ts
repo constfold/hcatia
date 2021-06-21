@@ -69,8 +69,8 @@ export interface Jump {
 
 export interface Cond {
     type: "Lt" | "Ge" | "Le" | "Gt" | "Eq" | "Ne"
-    left: number
-    right: number
+    left: Src
+    right: Src
 }
 
 export type Dst = Var | Upvalue | Table | Global | VarList
@@ -173,8 +173,7 @@ export interface TableConst {
 
 export interface Cat {
     type: "Cat"
-    slotStart: number
-    slotEnd: number
+    vars: VarList
 }
 
 export interface NewTable {
@@ -187,7 +186,7 @@ export type Op = BinaryOp | UnaryOp
 
 export interface BinaryOp {
     type: "Add" | "Sub" | "Mul" | "Div" | "Mod" | "Pow"
-    left: Var
+    left: Src
     right: Src
 }
 
