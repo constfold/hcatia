@@ -1,4 +1,11 @@
-import { False, Nil, True, ConstantData, ConstantNumber, Prototype } from "../bytecode"
+import {
+    False,
+    Nil,
+    True,
+    ConstantData,
+    ConstantNumber,
+    Prototype,
+} from "../bytecode"
 
 /**
  * The Lua file
