@@ -80,9 +80,11 @@ export interface Cond {
     right: Src
 }
 
-export type Dst = Var | Upvalue | Table | Global | VarList
+export type Dst = MultRes | Var | Upvalue | Table | Global | VarList
 
 export type Src =
+    | MultRes
+    | Varg
     | Var
     | Upvalue
     | Table
@@ -100,6 +102,21 @@ export type Src =
     | Op
     | SrcSelf
     | SrcList
+
+/**
+ * Correspond to LuaJIT's internal variable `MULTRES` that set by `*CALL*` or `VARG` and used by `*M`s.
+ * This will be eliminated after IR to lua AST transform and never shown up in lua code.
+ */
+export interface MultRes {
+    type: "MultRes"
+}
+
+/**
+ * Variadic arguments(`...`)
+ */
+export interface Varg {
+    type: "Varg"
+}
 
 export interface SrcList {
     type: "SrcList"
