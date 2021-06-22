@@ -79,7 +79,20 @@ export interface RetCall {
     call: Call
 }
 
-export type Loop = ForNum | ForIn | While | Repeat
+/**
+ * According to the LuaJIT wiki, the `for ... in ...` loop will always emit `JMP` `body`
+ * `ITERC` `ITERL`. So I assume that a `ITER*` will always followed by a `*ITERL`,
+ * which constitutes a `ForIn`.
+ *
+ * The `for i = ...` loop will emit `FORI` `body` `FORL`, which constitutes `ForNumInit`
+ * and `ForNumEnd`.
+ *
+ * The `LOOP` instruction that `while` and `repeat` loop use is represented
+ * as `GenericLoop`.
+ *
+ * All of these loops mentioned above will be detected while CFA.
+ */
+export type Loop = ForNumInit | ForNumEnd | ForIn | GenericLoop
 
 export interface Jump {
     type: "Jump"
@@ -231,31 +244,72 @@ export interface UnaryOp {
     expr: Src
 }
 
-export interface ForNum {
-    type: "ForNum"
-    start: Src
-    stop: Src
-    step: Src
-    idx: Src
-    branch: number
+export interface ForNumInit {
+    type: "ForNumInit"
+    /**
+     * A+3 = A
+     * ```lua
+     * if (step > 0 and var <= limit) or (step <= 0 and var >= limit) then
+     *  local v = var
+     * else
+     *  break
+     * end
+     * ```
+     */
+    checkThenInit: IfThenAssign
+}
+
+export interface ForNumEnd {
+    type: "ForNumEnd"
+    /**
+     * A = A + A+2
+     * ```lua
+     * var = var + step
+     * ```
+     */
+    reduce: Assign
+    /**
+     * ```lua
+     * if not ((step > 0 and var <= limit) or (step <= 0 and var >= limit)) then break end
+     * ```
+     */
+    check: If
 }
 
 export interface ForIn {
-    type: "ForIter"
-    func: Src
-    state: Src
-    ctl: Src
-    branch: number
+    type: "ForIn"
+    /**
+     * A, A+1, A+2 = A-3, A-2, A-1
+     * ```lua
+     * local f, s, var = explist
+     * ```
+     */
+    init: Assign
+    /**
+     * A, ..., A+B-2 = A(A+1, A+2)
+     * ```lua
+     * local var_1, ···, var_n = f(s, var)
+     * ```
+     */
+    callIter: Assign
+    /**
+     * A-1 = A
+     * ```lua
+     * var = var_1
+     * ```
+     */
+    reduce: Assign
+    /**
+     * if A != nil goto D
+     * ```lua
+     * if var == nil then break end
+     * ```
+     */
+    check: If
 }
 
-export interface While {
-    type: "While"
-    cond: Cond
-    branch: number
-}
-
-export interface Repeat {
-    type: "Repeat"
+export interface GenericLoop {
+    type: "GenericLoop"
     cond: Cond
     branch: number
 }
