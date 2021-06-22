@@ -30,11 +30,23 @@ export interface Symbols {
     numbers: ConstantNumber[]
 }
 
-export type Instruction = If | Assign | Call | Loop | Ret | Jump
+export type Instruction = If | Assign | Call | Loop | Ret | Jump | IfThenAssign
 
 export interface If {
     type: "If"
     cond: Cond
+    thenBranch: number
+    elseBranch: number
+}
+
+/** `ISTC` and `ISFC` both have side-effects, so while transforming it needs to be generated as three instructions
+ * (`If`, `Jump`, `Assign`) from two BcInsts(`ISTC`, `JMP`) which makes jump mapping and subsequent operations a
+ * little bit inconvenient. So I added this to IR, hoping this will make it easier to handle.
+ */
+export interface IfThenAssign {
+    type: "IfThenAssign"
+    cond: Cond
+    assign: Assign
     thenBranch: number
     elseBranch: number
 }
