@@ -51,15 +51,15 @@ export interface Assign {
  */
 export interface Call {
     type: "Call"
-    f: Var
-    args: Var[]
+    f: Src
+    args: Src[]
 }
 
 type Ret = RetVar | RetCall
 
 export interface RetVar {
     type: "RetVar"
-    vars: Var[]
+    values: Src[]
 }
 
 export interface RetCall {
