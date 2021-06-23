@@ -144,8 +144,8 @@ class InstructionTransformer {
         f()
         const end = this.pc
         // FIXME: pc might be discontinuous
-        for (let i = start; i < end; i++) {
-            if (this.pcMap[i] === -1) {
+        for (let i = start + 1; i <= end; i++) {
+            if (this.pcMap[i] !== -1) {
                 throw new Error(`pc${i} were already filled`)
             } else {
                 this.pcMap[i] = this.buf.length - 1
