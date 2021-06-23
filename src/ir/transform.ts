@@ -38,6 +38,7 @@ import {
     False,
     True,
     Nil,
+    Upvalue as UpvalueDetail,
 } from "../bytecode"
 import assert from "assert"
 import { Operand } from "../bytecode/instructions"
@@ -60,7 +61,7 @@ function fn(pt: Prototype): Fn {
     const variadic = pt.flags.contains(PtFlags.VARIADIC)
     const paramsNum = pt.params_num.value
 
-    const symbols_ = symbols(pt.constant_data, pt.constant_numbers)
+    const symbols_ = symbols(pt.constant_data, pt.constant_numbers, pt.upvalues)
 
     const instructions_ = new InstructionTransformer(pt, symbols_).output()
 
@@ -78,7 +79,7 @@ function fn(pt: Prototype): Fn {
     return f
 }
 
-function symbols(data: ConstantData[], numbers: ConstantNumber[]): Symbols {
+function symbols(data: ConstantData[], numbers: ConstantNumber[], upvalues: UpvalueDetail[]): Symbols {
     const data_ = data.map((c) => {
         if (typeof c !== "string" && c.type === "Prototype") {
             return fn(c)
@@ -89,6 +90,7 @@ function symbols(data: ConstantData[], numbers: ConstantNumber[]): Symbols {
 
     return {
         data: data_,
+        upvalues,
         numbers,
     }
 }

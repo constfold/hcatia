@@ -5,6 +5,7 @@ import {
     ConstantData,
     ConstantNumber,
     Prototype,
+    Upvalue as UpvalueDetail,
 } from "../bytecode"
 
 /**
@@ -27,6 +28,7 @@ export interface Fn {
 
 export interface Symbols {
     data: (Exclude<ConstantData, Prototype> | Fn)[]
+    upvalues: UpvalueDetail[]
     numbers: ConstantNumber[]
 }
 
