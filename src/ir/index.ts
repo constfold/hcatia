@@ -69,7 +69,7 @@ export interface Call {
     args: Src[]
 }
 
-type Ret = RetVar | RetCall
+export type Ret = RetVar | RetCall
 
 export interface RetVar {
     type: "RetVar"
