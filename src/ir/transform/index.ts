@@ -43,6 +43,7 @@ import {
 import assert from "assert"
 import { Operand } from "../../bytecode/instructions"
 import { U16, U8, Uleb128_33 } from "../../bytecode/primitive"
+import { Remapper } from "./addressRemap"
 
 export default function transform(bc: Bytecode): File {
     const filename = bc.filename
@@ -79,7 +80,11 @@ function fn(pt: Prototype): Fn {
     return f
 }
 
-function symbols(data: ConstantData[], numbers: ConstantNumber[], upvalues: UpvalueDetail[]): Symbols {
+function symbols(
+    data: ConstantData[],
+    numbers: ConstantNumber[],
+    upvalues: UpvalueDetail[]
+): Symbols {
     const data_ = data.map((c) => {
         if (typeof c !== "string" && c.type === "Prototype") {
             return fn(c)
@@ -144,6 +149,10 @@ class InstructionTransformer {
                 const inst: Instruction = this[bcInst.name](bcInst)
                 this.buf.push(inst)
             })
+        }
+
+        for (const inst of this.buf) {
+            new Remapper(this.pcMap).visitInstruction(inst)
         }
 
         return this.buf
