@@ -128,7 +128,7 @@ class InstructionTransformer {
     }
 
     output(): Instruction[] {
-        while (this.pc !== this.pcMap.length) {
+        while (this.pc !== this.pcMap.length - 1) {
             this.tracePc(() => {
                 const bcInst = this.nextBcInst()
                 const inst: Instruction = this[bcInst.name](bcInst)
