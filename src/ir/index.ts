@@ -99,7 +99,37 @@ export interface Jump {
     target: number
 }
 
-export interface Cond {
+export type Cond = BoolCoercion | CondCompare | LogicalOp | LogicalNotOp
+
+/**
+ * `LogicalOp`s is only used when some condition optimizing passes and will never be generated directly
+ * from bytecode since the `NOT` instcruction will be treated as a normal `UnaryOp`.
+ */
+export interface LogicalOp {
+    type: "And" | "Or"
+    left: Cond
+    right: Cond
+}
+
+export interface LogicalNotOp {
+    type: "LogicalNot",
+    expr: Cond
+}
+
+/**
+ * In lua's bool context, `nil` and `false` are considered `false`, other values are considered `true`.
+ * But when doing comparisions, only the `true`/`false` itself equals to itself. So the code below
+ * ```lua
+ * if 1 then print(1 == true) end
+ * ```
+ * will print `false`. It's the reason why this special IR is needed.
+ */
+export interface BoolCoercion {
+    type: "ImplicitTrue" | "ImplicitFalse"
+    src: Src
+}
+
+export interface CondCompare {
     type: "Lt" | "Ge" | "Le" | "Gt" | "Eq" | "Ne"
     left: Src
     right: Src
