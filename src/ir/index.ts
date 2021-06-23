@@ -149,7 +149,7 @@ export type Src =
     | Lit
     | ChildFunc
     | StringConst
-    | ConstData
+    | CDataConst
     | NumConst
     | Pri
     | TableConst
@@ -232,7 +232,7 @@ export interface StringConst {
 /**
  * Constant data including `I64 | U64 | Complex`
  */
-export interface ConstData {
+export interface CDataConst {
     type: "CDataConst"
     idx: number
 }

@@ -2,7 +2,7 @@ import {
     Assign,
     Call,
     Cond,
-    ConstData,
+    CDataConst,
     File,
     Fn,
     ForIn,
@@ -204,7 +204,7 @@ class InstructionTransformer {
         }
     }
 
-    cdata(oprand: Operand<"cdata", U16>): ConstData {
+    cdata(oprand: Operand<"cdata", U16>): CDataConst {
         const idx = oprand.val.value
         const data = this.syms.data[idx]
         if (typeof data === "string" || data.type === "Fn") {
