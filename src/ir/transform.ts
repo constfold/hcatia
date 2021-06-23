@@ -192,16 +192,25 @@ class InstructionTransformer {
     }
 
     str(oprand: Operand<"str", U8 | U16>): StringConst {
+        const idx = oprand.val.value
+        if (typeof this.syms.data[idx] !== "string") {
+            throw new Error("Constant type mismatched")
+        }
         return {
             type: "StringConst",
-            idx: oprand.val.value,
+            idx,
         }
     }
 
     cdata(oprand: Operand<"cdata", U16>): ConstData {
+        const idx = oprand.val.value
+        const data = this.syms.data[idx]
+        if (typeof data === "string" || data.type === "Fn") {
+            throw new Error("Constant type mismatched")
+        }
         return {
             type: "CDataConst",
-            idx: oprand.val.value,
+            idx,
         }
     }
 
@@ -220,16 +229,26 @@ class InstructionTransformer {
     }
 
     func(oprand: Operand<"func", U16>): Func {
+        const idx = oprand.val.value
+        const data = this.syms.data[idx]
+        if (typeof data === "string" || data.type !== "Fn") {
+            throw new Error("Constant type mismatched")
+        }
         return {
             type: "Func",
-            idx: oprand.val.value,
+            idx,
         }
     }
 
     tab(oprand: Operand<"tab", U16>): TableConst {
+        const idx = oprand.val.value
+        const data = this.syms.data[idx]
+        if (typeof data === "string" || data.type !== "Table") {
+            throw new Error("Constant type mismatched")
+        }
         return {
             type: "TableConst",
-            idx: oprand.val.value,
+            idx,
         }
     }
 
