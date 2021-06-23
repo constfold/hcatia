@@ -300,10 +300,14 @@ export interface ForNumEnd {
     reduce: Assign
     /**
      * ```lua
-     * if not ((step > 0 and var <= limit) or (step <= 0 and var >= limit)) then break end
+     * if (step > 0 and var <= limit) or (step <= 0 and var >= limit) then
+     *  local v = var
+     * else
+     *  break
+     * end
      * ```
      */
-    check: If
+    checkThenAssign: IfThenAssign
 }
 
 export interface ForIn {
@@ -338,8 +342,9 @@ export interface ForIn {
     check: If
 }
 
+/**
+ * According to LuaJIT wiki: "The *LOOP instructions are actually no-ops (except for hotspot detection) and don't branch."
+ */
 export interface GenericLoop {
     type: "GenericLoop"
-    cond: Cond
-    branch: number
 }
