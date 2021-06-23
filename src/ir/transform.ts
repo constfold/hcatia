@@ -41,7 +41,7 @@ import {
 } from "../bytecode"
 import assert from "assert"
 import { Operand } from "../bytecode/instructions"
-import { U16, U8 } from "../bytecode/primitive"
+import { U16, U8, Uleb128_33 } from "../bytecode/primitive"
 
 export default function transform(bc: Bytecode): File {
     const filename = bc.filename
@@ -116,6 +116,7 @@ class InstructionTransformer {
     pt
     pc
     syms
+    zeroNumIdx
     pcMap: number[]
     buf: Instruction[]
 
@@ -125,6 +126,13 @@ class InstructionTransformer {
         this.pcMap = new Array(pt.instructions.length).fill(-1)
         this.buf = []
         this.pc = -1
+
+        // Add an extra zero number for `forLoopCheck` even it's not used.
+        this.zeroNumIdx = this.syms.numbers.findIndex(n => n.value === 0)
+        if (this.zeroNumIdx === -1) {
+            this.zeroNumIdx = this.syms.numbers.length
+            this.syms.numbers.push(new Uleb128_33(0))
+        }
     }
 
     output(): Instruction[] {
@@ -433,7 +441,7 @@ class InstructionTransformer {
                     left: step,
                     right: {
                         type: "NumConst",
-                        idx: -1, // FIXME: This should point to a 0 number constant
+                        idx: this.zeroNumIdx, // FIXME: This should point to a 0 number constant
                     },
                 },
                 right: {
@@ -449,7 +457,7 @@ class InstructionTransformer {
                     left: step,
                     right: {
                         type: "NumConst",
-                        idx: -1, // FIXME: This should point to a 0 number constant
+                        idx: this.zeroNumIdx, // FIXME: This should point to a 0 number constant
                     },
                 },
                 right: {
