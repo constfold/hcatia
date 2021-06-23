@@ -157,7 +157,6 @@ export type Src =
     | Cat
     | NewTable
     | Op
-    | SrcSelf
     | SrcList
 
 /**
@@ -178,11 +177,6 @@ export interface Varg {
 export interface SrcList {
     type: "SrcList"
     srcs: Src[]
-}
-
-export interface SrcSelf {
-    type: "Src"
-    src: Src
 }
 
 export interface VarList {
