@@ -112,7 +112,7 @@ export interface LogicalOp {
 }
 
 export interface LogicalNotOp {
-    type: "LogicalNot",
+    type: "LogicalNot"
     expr: Cond
 }
 
