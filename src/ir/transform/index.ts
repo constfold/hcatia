@@ -27,7 +27,7 @@ import {
     Upvalue,
     Var,
     VarList,
-} from "."
+} from ".."
 import {
     Bytecode,
     ConstantData,
@@ -39,10 +39,10 @@ import {
     True,
     Nil,
     Upvalue as UpvalueDetail,
-} from "../bytecode"
+} from "../../bytecode"
 import assert from "assert"
-import { Operand } from "../bytecode/instructions"
-import { U16, U8, Uleb128_33 } from "../bytecode/primitive"
+import { Operand } from "../../bytecode/instructions"
+import { U16, U8, Uleb128_33 } from "../../bytecode/primitive"
 
 export default function transform(bc: Bytecode): File {
     const filename = bc.filename
