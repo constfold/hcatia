@@ -147,7 +147,7 @@ export type Src =
     | Table
     | Global
     | Lit
-    | Func
+    | ChildFunc
     | StringConst
     | ConstData
     | NumConst
@@ -219,8 +219,8 @@ export interface Lit {
     val: number
 }
 
-export interface Func {
-    type: "Func"
+export interface ChildFunc {
+    type: "ChildFunc"
     idx: number
 }
 

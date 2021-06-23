@@ -8,7 +8,7 @@ import {
     ForIn,
     ForNumEnd,
     ForNumInit,
-    Func,
+    ChildFunc,
     GenericLoop,
     If,
     IfThenAssign,
@@ -230,14 +230,14 @@ class InstructionTransformer {
         }
     }
 
-    func(oprand: Operand<"func", U16>): Func {
+    func(oprand: Operand<"func", U16>): ChildFunc {
         const idx = oprand.val.value
         const data = this.syms.data[idx]
         if (typeof data === "string" || data.type !== "Fn") {
             throw new Error("Constant type mismatched")
         }
         return {
-            type: "Func",
+            type: "ChildFunc",
             idx,
         }
     }
