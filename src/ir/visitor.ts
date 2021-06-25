@@ -229,9 +229,7 @@ export function visitAssign<V extends Visitor>(visitor: V, node: Assign): void {
 }
 export function visitCall<V extends Visitor>(visitor: V, node: Call): void {
     visitor.visitSrc(node.f)
-    for (const src of node.args) {
-        visitor.visitSrc(src)
-    }
+    visitor.visitSrcList({ type: "SrcList", srcs: node.args })
 }
 export function visitLoop<V extends Visitor>(visitor: V, node: Loop): void {
     if (node.type === "ForIn") {
@@ -270,9 +268,7 @@ export function visitIfThenAssign<V extends Visitor>(
 }
 
 export function visitRetVar<V extends Visitor>(visitor: V, node: RetVar): void {
-    for (const src of node.values) {
-        visitor.visitSrc(src)
-    }
+    visitor.visitSrcList({ type: "SrcList", srcs: node.values })
 }
 export function visitRetCall<V extends Visitor>(
     visitor: V,
