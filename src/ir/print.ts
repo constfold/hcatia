@@ -241,7 +241,13 @@ export class IrPrinter extends Visitor {
         super.visitVarg(node)
     }
     visitVar(node: Var): void {
-        this.write(`var@${this.fnCount}_${node.slot}`)
+        assert(this.fn !== undefined)
+        // The slot points to an argument
+        if (node.slot < this.fn.paramsNum) {
+            this.write(`arg${node.slot}`)
+        } else {
+            this.write(`var@${this.fnCount}_${node.slot}`)
+        }
         super.visitVar(node)
     }
     visitUpvalue(node: Upvalue): void {
