@@ -311,8 +311,8 @@ export class IrPrinter extends Visitor {
         // Save context
         const pc = this.pc
         const fnId = this.fnId
-        this.fnId = this.fnCount
         this.fnCount += 1
+        this.fnId = this.fnCount
 
         this.pc = 0
         this.visitFn(fn)
