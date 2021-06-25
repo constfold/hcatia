@@ -154,7 +154,7 @@ export function bytecode(input: ByteStream, encoding = "utf8"): Bytecode {
     const striped = flag.contains(BcFlags.IS_STRIPPED)
 
     const [filename_, root] = tuple(
-        call(len_start_string, encoding),
+        cond(!striped, call(len_start_string, encoding)),
         call(prototype_root, striped, encoding)
     )(input)
 
