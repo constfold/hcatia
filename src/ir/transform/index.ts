@@ -181,6 +181,13 @@ class InstructionTransformer {
     }
 
     /**
+     * The index in constant data is in fact negative.
+     */ 
+    fixDataIdx(idx: number): number {
+        return this.syms.data.length - 1 - idx
+    }
+
+    /**
      * Get the target of a jump that refs to the number of the instrcution in bytecode. It will be
      * mapped to the number of the IR's instrcution later.
      */
@@ -203,7 +210,7 @@ class InstructionTransformer {
     }
 
     str(oprand: Operand<"str", U8 | U16>): StringConst {
-        const idx = oprand.val.value
+        const idx = this.fixDataIdx(oprand.val.value)
         if (typeof this.syms.data[idx] !== "string") {
             throw new Error("Constant type mismatched")
         }
@@ -214,7 +221,7 @@ class InstructionTransformer {
     }
 
     cdata(oprand: Operand<"cdata", U16>): CDataConst {
-        const idx = oprand.val.value
+        const idx = this.fixDataIdx(oprand.val.value)
         const data = this.syms.data[idx]
         if (typeof data === "string" || data.type === "Fn") {
             throw new Error("Constant type mismatched")
@@ -240,7 +247,7 @@ class InstructionTransformer {
     }
 
     func(oprand: Operand<"func", U16>): ChildFunc {
-        const idx = oprand.val.value
+        const idx = this.fixDataIdx(oprand.val.value)
         const data = this.syms.data[idx]
         if (typeof data === "string" || data.type !== "Fn") {
             throw new Error("Constant type mismatched")
@@ -252,7 +259,7 @@ class InstructionTransformer {
     }
 
     tab(oprand: Operand<"tab", U16>): TableConst {
-        const idx = oprand.val.value
+        const idx = this.fixDataIdx(oprand.val.value)
         const data = this.syms.data[idx]
         if (typeof data === "string" || data.type !== "Table") {
             throw new Error("Constant type mismatched")
