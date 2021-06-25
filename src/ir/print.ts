@@ -246,7 +246,7 @@ export class IrPrinter extends Visitor {
         if (node.slot < this.fn.paramsNum) {
             this.write(`arg${node.slot}`)
         } else {
-            this.write(`var@${this.fnCount}_${node.slot}`)
+            this.write(`var@${this.fnId}_${node.slot}`)
         }
         super.visitVar(node)
     }
