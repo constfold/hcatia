@@ -182,7 +182,7 @@ class InstructionTransformer {
 
     /**
      * The index in constant data is in fact negative.
-     */ 
+     */
     fixDataIdx(idx: number): number {
         return this.syms.data.length - 1 - idx
     }
@@ -289,7 +289,7 @@ class InstructionTransformer {
 
     lits(oprand: Operand<"lits", U16>): Lit {
         let val = oprand.val.value
-        
+
         // Recover sign
         if (val > 0x7fff) {
             val -= 0x10000
