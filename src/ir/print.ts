@@ -141,7 +141,7 @@ export class IrPrinter extends Visitor {
         this.write("Call (")
         super.visitSrc(node.f)
         this.write(") ")
-        super.visitSrcList({ type: "SrcList", srcs: node.args })
+        this.visitSrcList({ type: "SrcList", srcs: node.args })
     }
     visitJump(node: Jump): void {
         this.write(`Jump -> ${node.target}`)
