@@ -12,7 +12,7 @@ import {
  * The Lua file
  */
 export interface File {
-    name: string
+    name: string | undefined
     fn: Fn
 }
 
