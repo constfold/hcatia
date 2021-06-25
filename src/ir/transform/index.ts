@@ -288,10 +288,15 @@ class InstructionTransformer {
     }
 
     lits(oprand: Operand<"lits", U16>): Lit {
+        let val = oprand.val.value
+        
+        // Recover sign
+        if (val > 0x7fff) {
+            val -= 0x10000
+        }
         return {
             type: "Lit",
-            // Recover sign
-            val: oprand.val.value - 0x10000,
+            val,
         }
     }
 
