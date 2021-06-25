@@ -48,7 +48,7 @@ function uleb128(input: ByteStream): Uleb128 {
             b = u8(input).value
             shift += 7
             val |= (b & 0x7f) << shift
-        } while (b < 0x7f)
+        } while ((b & 0x80) !== 0)
     }
 
     return new Uleb128(val)
@@ -66,7 +66,7 @@ function uleb128_33(input: ByteStream): Uleb128_33 {
             b = u8(input).value
             shift += 7
             val |= (b & 0x7f) << shift
-        } while (b < 0x7f)
+        } while ((b & 0x80) !== 0)
     }
 
     return new Uleb128_33(val)
