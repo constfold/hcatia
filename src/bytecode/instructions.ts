@@ -237,7 +237,7 @@ export type Instruction =
     | JFUNCV
     | FUNCC
     | FUNCCW
-export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
+export function buildInstruction([op, A, C, B]: [U8, U8, U8, U8]): Instruction {
     if (op.value === 0x0) {
         return {
             name: "ISLT",
@@ -248,7 +248,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x1) {
@@ -261,7 +261,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x2) {
@@ -274,7 +274,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x3) {
@@ -287,7 +287,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x4) {
@@ -300,7 +300,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x5) {
@@ -313,7 +313,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x6) {
@@ -326,7 +326,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "str",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x7) {
@@ -339,7 +339,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "str",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x8) {
@@ -352,7 +352,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "num",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x9) {
@@ -365,7 +365,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "num",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0xa) {
@@ -378,7 +378,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "pri",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0xb) {
@@ -391,7 +391,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "pri",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0xc) {
@@ -404,7 +404,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0xd) {
@@ -417,7 +417,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0xe) {
@@ -430,7 +430,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0xf) {
@@ -443,7 +443,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x10) {
@@ -456,7 +456,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x11) {
@@ -469,7 +469,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x12) {
@@ -482,7 +482,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x13) {
@@ -495,7 +495,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x14) {
@@ -797,7 +797,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "str",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x26) {
@@ -810,7 +810,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "cdata",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x27) {
@@ -823,7 +823,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lits",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x28) {
@@ -836,7 +836,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "num",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x29) {
@@ -849,7 +849,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "pri",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x2a) {
@@ -862,7 +862,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "base",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x2b) {
@@ -875,7 +875,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "uv",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x2c) {
@@ -888,7 +888,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "var",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x2d) {
@@ -901,7 +901,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "str",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x2e) {
@@ -914,7 +914,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "num",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x2f) {
@@ -927,7 +927,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "pri",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x30) {
@@ -940,7 +940,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x31) {
@@ -953,7 +953,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "func",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x32) {
@@ -966,7 +966,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x33) {
@@ -979,7 +979,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "tab",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x34) {
@@ -992,7 +992,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "str",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x35) {
@@ -1005,7 +1005,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "str",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x36) {
@@ -1120,7 +1120,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "num",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x3d) {
@@ -1167,7 +1167,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x40) {
@@ -1180,7 +1180,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x41) {
@@ -1244,7 +1244,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x45) {
@@ -1257,7 +1257,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x46) {
@@ -1270,7 +1270,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x47) {
@@ -1283,7 +1283,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x48) {
@@ -1296,7 +1296,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x49) {
@@ -1309,7 +1309,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x4a) {
@@ -1322,7 +1322,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x4b) {
@@ -1335,7 +1335,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x4c) {
@@ -1348,7 +1348,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x4d) {
@@ -1361,7 +1361,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x4e) {
@@ -1374,7 +1374,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x4f) {
@@ -1387,7 +1387,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x50) {
@@ -1400,7 +1400,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x51) {
@@ -1413,7 +1413,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x52) {
@@ -1426,7 +1426,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x53) {
@@ -1439,7 +1439,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x54) {
@@ -1452,7 +1452,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "jump",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x55) {
@@ -1465,7 +1465,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "none",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x56) {
@@ -1478,7 +1478,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "none",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x57) {
@@ -1491,7 +1491,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x58) {
@@ -1504,7 +1504,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "none",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x59) {
@@ -1517,7 +1517,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "none",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x5a) {
@@ -1530,7 +1530,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "lit",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x5b) {
@@ -1543,7 +1543,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "none",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else if (op.value === 0x5c) {
@@ -1556,7 +1556,7 @@ export function buildInstruction([op, A, B, C]: [U8, U8, U8, U8]): Instruction {
             type: "AD",
             D: {
                 type: "none",
-                val: new U16([B, C]),
+                val: new U16([C, B]),
             },
         }
     } else {
