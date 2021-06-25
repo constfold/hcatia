@@ -99,8 +99,8 @@ export class IrPrinter extends Visitor {
             this.write("\n<-- ROOT -->")
             super.visitFn(fn)
         } else {
-            let params = Array(fn.paramsNum)
-                .map((i) => `arg${i}`)
+            let params = Array.from({ length: fn.paramsNum })
+                .map((_, i) => `arg${i}`)
                 .join(", ")
             if (fn.variadic) {
                 params += ", ..."
