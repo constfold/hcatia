@@ -269,11 +269,26 @@ export interface MethodCallExpression extends Expression {
     params: Expression[]
 }
 
+export enum IdentifierType {
+    // The function arguments
+    Arg,
+    Var,
+    Upvalue,
+    // TODO: Maybe add debug for unstripped bytecode?
+}
+
+/**
+ * Since doing decompilation, we are not able to know what the orignal `Identifier` is.
+ * So we just create an unique name under the type and the scope of a var.
+ */
 export interface Identifier extends Expression {
     kind: NodeKind.Identifier
-    exportable: boolean
-    text: string
-    originalName?: string
+    type: IdentifierType
+    /**
+     * If type is `Arg` or `Var`, this is the slot on stack.
+     * If type is `Upvalue`, this is the slot and function id where the upvalue stored
+     */ 
+    slot: number
 }
 
 export interface TableIndexExpression extends Expression {
