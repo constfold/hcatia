@@ -130,7 +130,7 @@ export class IrPrinter extends Visitor {
         this.visitCond(node.cond)
         this.write(")")
         this.writeComponent(`then -> ${node.thenBranch}`)
-        this.writeComponent(`else -> ${node.elseBranch}`)
+        this.writeComponent(`else -> ${this.pc + 1}`)
     }
     visitAssign(node: Assign): void {
         this.visitDst(node.dst)
@@ -155,7 +155,7 @@ export class IrPrinter extends Visitor {
         this.writeComponent("assign: ", () => this.visitAssign(node.assign))
 
         this.writeComponent(`then -> ${node.thenBranch}`)
-        this.writeComponent(`else -> ${node.elseBranch}`)
+        this.writeComponent(`else -> ${this.pc + 1}`)
     }
 
     visitRetVar(node: RetVar): void {

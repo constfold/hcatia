@@ -34,11 +34,19 @@ export interface Symbols {
 
 export type Instruction = If | Assign | Call | Loop | Ret | Jump | IfThenAssign
 
+/**
+ * ```lua
+ * if `cond` then
+ *   goto `thenBranch`
+ * else
+ *   goto `next instruction`
+ * end
+ * ```
+ */
 export interface If {
     type: "If"
     cond: Cond
     thenBranch: number
-    elseBranch: number
 }
 
 /** `ISTC` and `ISFC` both have side-effects, so while transforming it needs to be generated as three instructions
@@ -50,7 +58,6 @@ export interface IfThenAssign {
     cond: Cond
     assign: Assign
     thenBranch: number
-    elseBranch: number
 }
 
 export interface Assign {

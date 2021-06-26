@@ -457,7 +457,6 @@ class InstructionTransformer {
                 right: { type: "Pri", val: { type: "Nil" } },
             },
             thenBranch: this.jumpTarget(loop.D),
-            elseBranch: this.pc + 1,
         }
 
         return {
@@ -546,7 +545,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISGE(bcInst: BcInst): If {
@@ -560,7 +558,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISLE(bcInst: BcInst): If {
@@ -574,7 +571,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISGT(bcInst: BcInst): If {
@@ -588,7 +584,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISEQV(bcInst: BcInst): If {
@@ -602,7 +597,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISNEV(bcInst: BcInst): If {
@@ -616,7 +610,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISEQS(bcInst: BcInst): If {
@@ -630,7 +623,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISNES(bcInst: BcInst): If {
@@ -644,7 +636,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISEQN(bcInst: BcInst): If {
@@ -658,7 +649,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISNEN(bcInst: BcInst): If {
@@ -672,7 +662,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISEQP(bcInst: BcInst): If {
@@ -686,7 +675,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISNEP(bcInst: BcInst): If {
@@ -700,7 +688,6 @@ class InstructionTransformer {
                 right: this[bcInst.D.type](bcInst.D),
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISTC(bcInst: BcInst): IfThenAssign {
@@ -722,7 +709,6 @@ class InstructionTransformer {
             },
             assign,
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
 
         return ifAssign
@@ -745,7 +731,6 @@ class InstructionTransformer {
             },
             assign,
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
 
         return ifAssign
@@ -764,7 +749,6 @@ class InstructionTransformer {
                 },
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     ISF(bcInst: BcInst): If {
@@ -781,7 +765,6 @@ class InstructionTransformer {
                 },
             },
             thenBranch: jump.target,
-            elseBranch: this.pc + 1,
         }
     }
     MOV(bcInst: BcInst): Assign {
@@ -1349,14 +1332,14 @@ class InstructionTransformer {
             type: "ForNumInit",
             checkThenInit: {
                 type: "IfThenAssign",
-                cond: this.forLoopCheck(bcInst.A),
+                // invert the condition
+                cond: { type: "LogicalNot", expr: this.forLoopCheck(bcInst.A) },
                 assign: {
                     type: "Assign",
                     dst: { type: "Var", slot: bcInst.A.val.value + 3 },
                     src: { type: "Var", slot: bcInst.A.val.value },
                 },
-                thenBranch: this.pc + 1,
-                elseBranch: this.jumpTarget(bcInst.D),
+                thenBranch: this.jumpTarget(bcInst.D),
             },
         }
     }
@@ -1382,7 +1365,6 @@ class InstructionTransformer {
                     src: { type: "Var", slot: bcInst.A.val.value },
                 },
                 thenBranch: this.jumpTarget(bcInst.D),
-                elseBranch: this.pc + 1,
             },
         }
     }
