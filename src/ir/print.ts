@@ -242,8 +242,8 @@ export class IrPrinter extends Visitor {
     }
     visitVar(node: Var): void {
         assert(this.fn !== undefined)
-        // The slot points to an argument
-        if (node.slot < this.fn.paramsNum) {
+
+        if (node.type === "Arg") {
             this.write(`arg${node.slot}`)
         } else {
             this.write(`var@${this.fnId}_${node.slot}`)

@@ -192,7 +192,7 @@ export interface VarList {
 }
 
 export interface Var {
-    type: "Var"
+    type: "Var" | "Arg"
     slot: number
 }
 

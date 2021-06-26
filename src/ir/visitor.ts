@@ -323,7 +323,7 @@ export function visitDst<V extends Visitor>(visitor: V, node: Dst): void {
         visitor.visitGlobal(node)
     } else if (node.type === "MultRes") {
         visitor.visitMultRes(node)
-    } else if (node.type === "Var") {
+    } else if (node.type === "Var" || node.type === "Arg") {
         visitor.visitVar(node)
     } else if (node.type === "Upvalue") {
         visitor.visitUpvalue(node)
@@ -333,7 +333,7 @@ export function visitDst<V extends Visitor>(visitor: V, node: Dst): void {
         visitor.visitVarList(node)
     } else {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const _: never = node
+        const _: never = node.type
     }
 }
 export function visitSrc<V extends Visitor>(visitor: V, node: Src): void {
@@ -341,7 +341,7 @@ export function visitSrc<V extends Visitor>(visitor: V, node: Src): void {
         visitor.visitGlobal(node)
     } else if (node.type === "MultRes") {
         visitor.visitMultRes(node)
-    } else if (node.type === "Var") {
+    } else if (node.type === "Var" || node.type === "Arg") {
         visitor.visitVar(node)
     } else if (node.type === "Upvalue") {
         visitor.visitUpvalue(node)

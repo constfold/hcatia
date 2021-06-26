@@ -195,18 +195,26 @@ class InstructionTransformer {
         return this.pc + 1 + jmp.val.value - 0x8000
     }
 
-    var(oprand: Operand<"var", U8 | U16>): Var {
+    varOrArg(slot: number): Var {
+        let type: "Var" | "Arg"
+        if (slot < this.pt.params_num.value) {
+            type = "Arg"
+        } else {
+            type = "Var"
+        }
+
         return {
-            type: "Var",
-            slot: oprand.val.value,
+            type,
+            slot,
         }
     }
 
+    var(oprand: Operand<"var", U8 | U16>): Var {
+        return this.varOrArg(oprand.val.value)
+    }
+
     dst(oprand: Operand<"dst", U8>): Var {
-        return {
-            type: "Var",
-            slot: oprand.val.value,
-        }
+        return this.varOrArg(oprand.val.value)
     }
 
     str(oprand: Operand<"str", U8 | U16>): StringConst {
@@ -313,10 +321,7 @@ class InstructionTransformer {
     ): VarList {
         const vars: Var[] = []
         for (let i = start.val.value; i < end.val.value; i++) {
-            vars.push({
-                type: "Var",
-                slot: i,
-            })
+            vars.push(this.varOrArg(i))
         }
         return {
             type: "VarList",
@@ -332,17 +337,14 @@ class InstructionTransformer {
         const fxiedArgsNum = C.val.value - 1
         const srcs: Src[] = []
         for (let i = 0; i < fxiedArgsNum; i++) {
-            srcs.push({ type: "Var", slot: A.val.value + 1 + i })
+            srcs.push(this.varOrArg(A.val.value + 1 + i))
         }
         if (m) {
             srcs.push({ type: "MultRes" })
         }
         return {
             type: "Call",
-            f: {
-                type: "Var",
-                slot: A.val.value,
-            },
+            f: this.varOrArg(A.val.value),
             args: srcs,
         }
     }
@@ -364,10 +366,7 @@ class InstructionTransformer {
         } else {
             const vars: Var[] = []
             for (let i = 0; i < returns; i++) {
-                vars.push({
-                    type: "Var",
-                    slot: A.val.value + i,
-                })
+                vars.push(this.varOrArg(A.val.value + i))
             }
             return {
                 type: "Assign",
@@ -389,7 +388,7 @@ class InstructionTransformer {
         const base = A.val.value
 
         const values: Src[] = range(base, base + fixedValuesNum).map((i) => {
-            return { type: "Var", slot: i }
+            return this.varOrArg(i)
         })
         if (m) {
             values.push({ type: "MultRes" })
@@ -412,13 +411,13 @@ class InstructionTransformer {
             dst: {
                 type: "VarList",
                 vars: rangeInclusive(A1, A1 + 2).map((slot) => {
-                    return { type: "Var", slot }
+                    return this.varOrArg(slot)
                 }),
             },
             src: {
                 type: "SrcList",
                 srcs: rangeInclusive(A1 - 3, A1 - 1).map((slot) => {
-                    return { type: "Var", slot }
+                    return this.varOrArg(slot)
                 }),
             },
         }
@@ -429,31 +428,28 @@ class InstructionTransformer {
             dst: {
                 type: "VarList",
                 vars: range(A1, A1 + B1).map((slot) => {
-                    return { type: "Var", slot }
+                    return this.varOrArg(slot)
                 }),
             },
             src: {
                 type: "Call",
-                f: { type: "Var", slot: A1 },
-                args: [
-                    { type: "Var", slot: A1 + 1 },
-                    { type: "Var", slot: A1 + 1 },
-                ],
+                f: this.varOrArg(A1),
+                args: [this.varOrArg(A1 + 1), this.varOrArg(A1 + 1)],
             },
         }
 
         const A2 = loop.A.val.value
         const reduce: Assign = {
             type: "Assign",
-            dst: { type: "Var", slot: A2 + 1 },
-            src: { type: "Var", slot: A2 },
+            dst: this.varOrArg(A2 + 1),
+            src: this.varOrArg(A2),
         }
 
         const check: If = {
             type: "If",
             cond: {
                 type: "Ne",
-                left: { type: "Var", slot: A2 },
+                left: this.varOrArg(A2),
                 right: { type: "Pri", val: { type: "Nil" } },
             },
             thenBranch: this.jumpTarget(loop.D),
@@ -469,10 +465,10 @@ class InstructionTransformer {
     }
 
     forLoopCheck(base: Operand<"base", U8>): Cond {
-        const idx: Var = { type: "Var", slot: base.val.value }
-        const limit: Var = { type: "Var", slot: idx.slot + 1 }
-        const step: Var = { type: "Var", slot: idx.slot + 2 }
-        // const v: Var = { type: "Var", slot: idx.slot + 3 }
+        const idx: Var = this.varOrArg(base.val.value)
+        const limit: Var = this.varOrArg(idx.slot + 1)
+        const step: Var = this.varOrArg(idx.slot + 2)
+        // const v: Var = this.varOrArg(idx.slot + 3)
         const cond: Cond = {
             type: "Or",
             left: {
@@ -1236,10 +1232,7 @@ class InstructionTransformer {
             type: "Assign",
             dst: {
                 type: "Table",
-                table: {
-                    type: "Var",
-                    slot: bcInst.A.val.value - 1,
-                },
+                table: this.varOrArg(bcInst.A.val.value - 1),
                 key: { type: "MultRes" },
             },
             src: { type: "MultRes" },
@@ -1291,7 +1284,7 @@ class InstructionTransformer {
             dst = {
                 type: "VarList",
                 vars: range(base, base + dstNum).map((i) => {
-                    return { type: "Var", slot: i }
+                    return this.varOrArg(i)
                 }),
             }
         }
@@ -1336,8 +1329,8 @@ class InstructionTransformer {
                 cond: { type: "LogicalNot", expr: this.forLoopCheck(bcInst.A) },
                 assign: {
                     type: "Assign",
-                    dst: { type: "Var", slot: bcInst.A.val.value + 3 },
-                    src: { type: "Var", slot: bcInst.A.val.value },
+                    dst: this.varOrArg(bcInst.A.val.value + 3),
+                    src: this.varOrArg(bcInst.A.val.value),
                 },
                 thenBranch: this.jumpTarget(bcInst.D),
             },
@@ -1349,11 +1342,11 @@ class InstructionTransformer {
             type: "ForNumEnd",
             reduce: {
                 type: "Assign",
-                dst: { type: "Var", slot: bcInst.A.val.value },
+                dst: this.varOrArg(bcInst.A.val.value),
                 src: {
                     type: "Add",
-                    left: { type: "Var", slot: bcInst.A.val.value },
-                    right: { type: "Var", slot: bcInst.A.val.value + 2 },
+                    left: this.varOrArg(bcInst.A.val.value),
+                    right: this.varOrArg(bcInst.A.val.value + 2),
                 },
             },
             checkThenAssign: {
@@ -1361,8 +1354,8 @@ class InstructionTransformer {
                 cond: this.forLoopCheck(bcInst.A),
                 assign: {
                     type: "Assign",
-                    dst: { type: "Var", slot: bcInst.A.val.value + 3 },
-                    src: { type: "Var", slot: bcInst.A.val.value },
+                    dst: this.varOrArg(bcInst.A.val.value + 3),
+                    src: this.varOrArg(bcInst.A.val.value),
                 },
                 thenBranch: this.jumpTarget(bcInst.D),
             },
