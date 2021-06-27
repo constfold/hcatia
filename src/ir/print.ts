@@ -171,28 +171,28 @@ export class IrPrinter extends Visitor {
     visitForNumInit(node: ForNumInit): void {
         this.write("ForNumInit")
         this.writeComponent("checkThenInit: ", () =>
-            super.visitIfThenAssign(node.checkThenInit)
+            this.visitIfThenAssign(node.checkThenInit)
         )
     }
     visitForNumEnd(node: ForNumEnd): void {
         this.write("ForNumEnd")
 
-        this.writeComponent("reduce: ", () => super.visitAssign(node.reduce))
+        this.writeComponent("reduce: ", () => this.visitAssign(node.reduce))
 
         this.writeComponent("checkThenAssign: ", () =>
-            super.visitIfThenAssign(node.checkThenAssign)
+            this.visitIfThenAssign(node.checkThenAssign)
         )
     }
     visitForIn(node: ForIn): void {
         this.write("ForIn")
         this.writeComponent("init: ", () => {
-            super.visitAssign(node.init)
+            this.visitAssign(node.init)
         })
         this.writeComponent("callIter: ", () =>
-            super.visitAssign(node.callIter)
+            this.visitAssign(node.callIter)
         )
-        this.writeComponent("reduce: ", () => super.visitAssign(node.reduce))
-        this.writeComponent("check: ", () => super.visitIf(node.check))
+        this.writeComponent("reduce: ", () => this.visitAssign(node.reduce))
+        this.writeComponent("check: ", () => this.visitIf(node.check))
     }
     visitGenericLoop(node: GenericLoop): void {
         this.write("GenericLoop")
