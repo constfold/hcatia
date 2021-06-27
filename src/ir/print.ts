@@ -291,11 +291,15 @@ export class IrPrinter extends Visitor {
     }
     visitVarList(node: VarList): void {
         this.write("<")
-        for (let i = 0; i < node.vars.length - 1; i++) {
-            this.visitVar(node.vars[i])
-            this.write(", ")
+        if (node.vars.length === 0) {
+            this.write("!")
+        } else {
+            for (let i = 0; i < node.vars.length - 1; i++) {
+                this.visitVar(node.vars[i])
+                this.write(", ")
+            }
+            this.visitVar(node.vars[node.vars.length - 1])
         }
-        this.visitVar(node.vars[node.vars.length - 1])
         this.write(">")
     }
     visitLit(node: Lit): void {
@@ -365,11 +369,15 @@ export class IrPrinter extends Visitor {
     }
     visitSrcList(node: SrcList): void {
         this.write("<")
-        for (let i = 0; i < node.srcs.length - 1; i++) {
-            this.visitSrc(node.srcs[i])
-            this.write(", ")
+        if (node.srcs.length === 0) {
+            this.write("!")
+        } else {
+            for (let i = 0; i < node.srcs.length - 1; i++) {
+                this.visitSrc(node.srcs[i])
+                this.write(", ")
+            }
+            this.visitSrc(node.srcs[node.srcs.length - 1])
         }
-        this.visitSrc(node.srcs[node.srcs.length - 1])
         this.write(">")
     }
 
