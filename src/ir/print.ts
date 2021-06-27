@@ -381,7 +381,7 @@ export class IrPrinter extends Visitor {
 
     visitBinaryOp(node: BinaryOp): void {
         this.visitSrc(node.left)
-        this.writeWithIndent(` ${node.type} `)
+        this.write(` ${node.type} `)
         this.visitSrc(node.right)
     }
     visitUnaryOp(node: UnaryOp): void {
