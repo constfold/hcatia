@@ -384,7 +384,7 @@ class InstructionTransformer {
         D: Operand<"lit", U16>,
         m: boolean
     ): RetVar {
-        const fixedValuesNum = D.val.value
+        const fixedValuesNum = D.val.value - 1
         const base = A.val.value
 
         const values: Src[] = range(base, base + fixedValuesNum).map((i) => {
