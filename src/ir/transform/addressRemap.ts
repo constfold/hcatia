@@ -10,7 +10,6 @@ export class Remapper extends Visitor {
 
     visitIf(node: If): void {
         node.thenBranch = this.map[node.thenBranch]
-        node.elseBranch = this.map[node.elseBranch]
         super.visitIf(node)
     }
 
@@ -21,7 +20,6 @@ export class Remapper extends Visitor {
 
     visitIfThenAssign(node: IfThenAssign): void {
         node.thenBranch = this.map[node.thenBranch]
-        node.elseBranch = this.map[node.elseBranch]
         super.visitIfThenAssign(node)
     }
 }
