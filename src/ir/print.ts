@@ -188,9 +188,7 @@ export class IrPrinter extends Visitor {
         this.writeComponent("init: ", () => {
             this.visitAssign(node.init)
         })
-        this.writeComponent("callIter: ", () =>
-            this.visitAssign(node.callIter)
-        )
+        this.writeComponent("callIter: ", () => this.visitAssign(node.callIter))
         this.writeComponent("reduce: ", () => this.visitAssign(node.reduce))
         this.writeComponent("check: ", () => this.visitIf(node.check))
     }
