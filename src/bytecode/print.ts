@@ -61,7 +61,7 @@ function instruction(
 
     if (op.type === "AD") {
         if (op.D.type === "jump") {
-            s = sprintf("%s=> %04d\n", s, jumpTarget(op.D.val.value, pc))
+            s = sprintf("%s=> %04d\n", s, jumpTarget(op.D.val.value, pc) + 1)
         } else if (op.D.type === "none") {
             // do nothing
         } else if (op.D.type === "lits" && op.D.val.value > 0x7fff) {
