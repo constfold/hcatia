@@ -287,7 +287,7 @@ export interface Identifier extends Expression {
     /**
      * If type is `Arg` or `Var`, this is the slot on stack.
      * If type is `Upvalue`, this is the slot and function id where the upvalue stored
-     */ 
+     */
     slot: number
 }
 
