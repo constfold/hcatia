@@ -63,9 +63,3 @@ export function map<T, U>(f: Fn<T>, g: (a: T) => U): Fn<U> {
         return g(f(input))
     }
 }
-
-export function peek<T>(f: Fn<T>): Fn<T> {
-    return function (input: ByteStream) {
-        return f(input)
-    }
-}

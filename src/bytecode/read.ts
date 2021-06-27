@@ -17,7 +17,7 @@ import {
     TableItem,
 } from "."
 import { ByteStream } from "./bytestream"
-import { tuple, cond, call, count, map, peek } from "./combinator"
+import { tuple, cond, call, count, map } from "./combinator"
 import {
     U8,
     Uleb128,
@@ -54,8 +54,8 @@ function uleb128(input: ByteStream): Uleb128 {
     return new Uleb128(val)
 }
 
-function uleb128_33(input: ByteStream): Uleb128_33 {
-    let val = u8(input).value >> 1
+function uleb128_33(firstByte: U8, input: ByteStream): Uleb128_33 {
+    let val = firstByte.value >> 1
 
     if (val > 0x3f) {
         let shift = -1
@@ -360,8 +360,9 @@ function constantData(
 }
 
 function constantNumber(input: ByteStream): ConstantNumber {
-    const is_int = map(peek(u8), (n) => (n.value & 0b10000000) === 0)(input)
-    const lo = uleb128_33(input)
+    const firstByte = u8(input)
+    const is_int = (firstByte.value & 0b10000000) === 0
+    const lo = uleb128_33(firstByte, input)
 
     if (is_int) {
         return lo
