@@ -2,13 +2,17 @@
     "name": "hcatia",
     "version": "0.0.1",
     "description": "Another luaJIT bytecode decompiler",
-    "main": "./build/main.js",
+    "main": "build/index.js",
     "scripts": {
         "test": "jest",
         "lint": "npm run lint:eslint && npm run lint:prettier",
         "lint:eslint": "eslint .",
         "lint:prettier": "prettier --check .",
         "gen:inst": "tsc --build scripts/tsconfig.json && rm src/bytecode/instructions.ts && node build/scripts/InstructionGenerate.js > src/bytecode/instructions.ts && eslint --fix src/bytecode/instructions.ts && prettier -w src/bytecode/instructions.ts"
+    },
+    "type": "commonjs",
+    "engines": {
+        "node": ">=12.13.0"
     },
     "author": "",
     "license": "AGPL-3.0-or-later",
@@ -23,10 +27,12 @@
         "@types/sprintf-js": "^1.1.2",
         "@typescript-eslint/eslint-plugin": "^4.26.1",
         "@typescript-eslint/parser": "^4.33.0",
-        "eslint": "^7.28.0",
+        "eslint": "^7.32.0",
         "eslint-config-airbnb-base": "^14.2.1",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "^2.25.3",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-prettier": "^4.0.0",
         "prettier": "2.5.0",
         "ts-jest": "^27.0.7"
     }
