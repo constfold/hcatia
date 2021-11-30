@@ -15,7 +15,7 @@
     "dependencies": {
         "iconv-lite": "^0.4.24",
         "jest": "^27.0.4",
-        "sprintf-js": "^1.0.3",
+        "sprintf-js": "^1.1.2",
         "typescript": "^4.3.2"
     },
     "devDependencies": {
