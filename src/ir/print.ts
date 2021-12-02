@@ -330,7 +330,13 @@ export class IrPrinter extends Visitor {
         const data = this.fn.symbols.data
         const s = data[node.idx]
         assert(typeof s === "string")
-        this.write(`"${escape(s)}"`)
+
+        // escape
+        const escaped = s
+            .replace(/\\/g, "\\\\")
+            .replace(/"/g, '\\"')
+            .replace(/\n/g, "\\n")
+        this.write(`"${escaped}"`)
 
         super.visitStringConst(node)
     }
