@@ -253,13 +253,14 @@ export class IrPrinter extends Visitor {
         let uv = this.fn.symbols.upvalues[node.idx]
         let lv = 0
 
+        let fn = this.fn
         for (;;) {
             if (uv.type === "OuterUpvalue") {
                 // Find where the uv points to.
-
                 const ref = uv.ref.value
-                assert(this.fn.parent !== undefined)
-                uv = this.fn.parent.symbols.upvalues[ref]
+                assert(fn.parent !== undefined)
+                uv = fn.parent.symbols.upvalues[ref]
+                fn = fn.parent
                 lv += 1
             } else {
                 break
