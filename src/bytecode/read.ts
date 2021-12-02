@@ -361,7 +361,7 @@ function constantData(
 
 function constantNumber(input: ByteStream): ConstantNumber {
     const firstByte = u8(input)
-    const is_int = (firstByte.value & 0b10000000) === 0
+    const is_int = (firstByte.value & 0b00000001) === 0
     const lo = uleb128_33(firstByte, input)
 
     if (is_int) {
