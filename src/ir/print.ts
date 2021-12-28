@@ -334,7 +334,7 @@ export class IrPrinter extends Visitor {
         // escape
         const escaped = s
             .replace(/\\/g, "\\\\")
-            .replace(/"/g, '\\"')
+            .replace(/"/g, "\\\"")
             .replace(/\n/g, "\\n")
         this.write(`"${escaped}"`)
 
