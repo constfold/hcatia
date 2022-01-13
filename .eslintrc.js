@@ -19,7 +19,6 @@ module.exports = {
     plugins: ["@typescript-eslint"],
     rules: {
         indent: ["error", 4],
-        "linebreak-style": ["error", "unix"],
         semi: ["error", "never"],
         "node/no-unsupported-features/es-syntax": [
             "error",
