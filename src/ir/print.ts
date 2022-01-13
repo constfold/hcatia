@@ -40,6 +40,7 @@ import {
 } from "."
 import { Visitor } from "./visitor"
 import assert from "assert"
+import { TableItem } from "../bytecode"
 
 const INDENT: string = " ".repeat(4)
 
@@ -356,8 +357,33 @@ export class IrPrinter extends Visitor {
         super.visitPri(node)
     }
     visitTableConst(node: TableConst): void {
-        // TODO
-        this.write("TABLE")
+        function itemToString(item: TableItem): string | number {
+            let val
+            if (typeof item === "string") {
+                val = `"${item}"`
+            } else if (item.type === "f64" || item.type === "uleb128") {
+                val = item.value
+            } else {
+                val = item.type
+            }
+            return val
+        }
+        assert(this.fn !== undefined)
+
+        const table = this.fn.constants.data[node.idx]
+        assert(typeof table !== "string" && table.type === "Table")
+
+        this.write("TABLE {")
+        for (let i = 0; i < table.array.length; i++) {
+            const item = table.array[i]
+            this.write(`[${i + 1}] = ${itemToString(item)},`)
+        }
+        for (let i = 0; i < table.hash.length; i++) {
+            const kv = table.hash[i]
+            const [k, v] = kv
+            this.write(`[${itemToString(k)}] = ${itemToString(v)},`)
+        }
+        this.write("}")
         super.visitTableConst(node)
     }
     visitCat(node: Cat): void {
