@@ -20,7 +20,6 @@ module.exports = {
     rules: {
         indent: ["error", 4],
         "linebreak-style": ["error", "unix"],
-        quotes: ["error", "double"],
         semi: ["error", "never"],
         "node/no-unsupported-features/es-syntax": [
             "error",
