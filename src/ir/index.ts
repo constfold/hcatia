@@ -22,11 +22,11 @@ export interface Fn {
     parent: Fn | undefined
     paramsNum: number
     variadic: boolean
-    symbols: Symbols
+    constants: Constant
     instructions: Instruction[]
 }
 
-export interface Symbols {
+export interface Constant {
     data: (Exclude<ConstantData, Prototype> | Fn)[]
     upvalues: UpvalueDetail[]
     numbers: ConstantNumber[]

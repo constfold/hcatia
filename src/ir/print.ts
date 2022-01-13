@@ -250,7 +250,7 @@ export class IrPrinter extends Visitor {
     }
     visitUpvalue(node: Upvalue): void {
         assert(this.fn !== undefined)
-        let uv = this.fn.symbols.upvalues[node.idx]
+        let uv = this.fn.constants.upvalues[node.idx]
         let lv = 0
 
         let fn = this.fn
@@ -259,7 +259,7 @@ export class IrPrinter extends Visitor {
                 // Find where the uv points to.
                 const ref = uv.ref.value
                 assert(fn.parent !== undefined)
-                uv = fn.parent.symbols.upvalues[ref]
+                uv = fn.parent.constants.upvalues[ref]
                 fn = fn.parent
                 lv += 1
             } else {
@@ -307,7 +307,7 @@ export class IrPrinter extends Visitor {
     }
     visitChildFunc(node: ChildFunc): void {
         assert(this.fn !== undefined)
-        const data = this.fn.symbols.data
+        const data = this.fn.constants.data
         const fn = data[node.idx]
         assert(typeof fn !== "string" && fn.type === "Fn")
 
@@ -327,7 +327,7 @@ export class IrPrinter extends Visitor {
     }
     visitStringConst(node: StringConst): void {
         assert(this.fn !== undefined)
-        const data = this.fn.symbols.data
+        const data = this.fn.constants.data
         const s = data[node.idx]
         assert(typeof s === "string")
 
@@ -347,7 +347,7 @@ export class IrPrinter extends Visitor {
     }
     visitNumConst(node: NumConst): void {
         assert(this.fn !== undefined)
-        const number = this.fn.symbols.numbers[node.idx]
+        const number = this.fn.constants.numbers[node.idx]
         this.write(`Num ${number.value}`)
         super.visitNumConst(node)
     }

@@ -22,7 +22,7 @@ import {
     RetVar,
     Src,
     StringConst,
-    Symbols,
+    Constant,
     TableConst,
     Upvalue,
     Var,
@@ -72,7 +72,7 @@ function fn(pt: Prototype): Fn {
         parent: undefined,
         variadic,
         paramsNum,
-        symbols: symbols_,
+        constants: symbols_,
         instructions: instructions_,
     }
     setParentForChildren(f)
@@ -84,7 +84,7 @@ function symbols(
     data: ConstantData[],
     numbers: ConstantNumber[],
     upvalues: UpvalueDetail[]
-): Symbols {
+): Constant {
     const data_ = data.map((c) => {
         if (typeof c !== "string" && c.type === "Prototype") {
             return fn(c)
@@ -101,7 +101,7 @@ function symbols(
 }
 
 function setParentForChildren(fn: Fn) {
-    for (const c of fn.symbols.data) {
+    for (const c of fn.constants.data) {
         if (typeof c !== "string" && c.type === "Fn") {
             assert(c.parent === undefined)
             c.parent = fn
@@ -127,7 +127,7 @@ class InstructionTransformer {
     pcMap: number[]
     buf: Instruction[]
 
-    constructor(pt: Prototype, syms: Symbols) {
+    constructor(pt: Prototype, syms: Constant) {
         this.pt = pt
         this.syms = syms
         this.pcMap = new Array(pt.instructions.length).fill(-1)
