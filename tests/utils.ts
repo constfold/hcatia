@@ -1,9 +1,11 @@
-import fs from "fs"
-import { execSync } from "child_process"
+import { readdirSync, mkdirSync } from "fs"
+import { execFileSync } from "child_process"
 import * as path from "path"
 import { U8 } from "../src/bytecode/primitive"
 
-export const luaJitPath = process.env.LUAJIT_SRC
+const luajitFile =
+    process.env.LUAJIT || "D:\\dev\\LuaJIT-2.0.5\\src\\luajit.exe"
+const luajitDir = path.dirname(luajitFile)
 
 export class BufferStream {
     buf: Buffer
@@ -30,33 +32,48 @@ export class BufferStream {
     }
 }
 
-const casesPath = "./tests/cases/"
-const compiledPath = "./build/tests/cases/"
+/**
+ * Prepare all test cases
+ * @returns filenames of each test case
+ */
+export function prepareTestCases(): string[] {
+    const luaCasesPath = "./tests/cases/"
+    const compiledCasesPath = "./build/tests/cases/"
 
-export const cases = listCases()
-
-export function compileCases(): string[] {
-    fs.mkdirSync(compiledPath, { recursive: true })
+    const cases = readdirSync(luaCasesPath)
+    .map((s) => path.join(luaCasesPath, s))
+    .map(s => path.resolve(s))
+    
     const v: string[] = []
-    for (const cs of cases) {
-        const lua = cs
-        const compiled = path.resolve(
-            path.join(compiledPath, `${path.basename(cs)}.bc`)
+    mkdirSync(compiledCasesPath, { recursive: true })
+    for (const testLua of cases) {
+        // path to stripped compiled LuaJIT bytecode
+        const bytecode = path.resolve(
+            path.join(compiledCasesPath, `${path.basename(testLua)}.bc`)
         )
-        const stripped = compiled + ".dbg"
-        execSync(
-            `cd ${luaJitPath} && ./luajit -bg ${lua} ${compiled} && ./luajit -bs ${lua} ${stripped}`
-        )
-        v.push(compiled, stripped)
+        // path to un-stripped LuaJIT bytecode
+        const withDbg = bytecode + ".dbg"
+
+        execFileSync(luajitFile, ["-bs", testLua, bytecode], {
+            cwd: luajitDir,
+        })
+        execFileSync(luajitFile, ["-bg", testLua, withDbg], {
+            cwd: luajitDir,
+        })
+
+        v.push(bytecode, withDbg)
     }
 
     return v
 }
 
-export function listCases(): string[] {
-    const cases = fs
-        .readdirSync(casesPath)
-        .map((f) => path.resolve(path.join(casesPath, f)))
-
-    return cases
+/**
+ * call `luajit -bl` for given filename
+ * @param filename bytecode's filename
+ * @returns the output of LuaJIT
+ */
+export function listLuajitBytecode(filename: string): string {
+    return execFileSync(luajitFile, ["-bl", filename], {
+        cwd: luajitDir,
+    }).toLocaleString()
 }

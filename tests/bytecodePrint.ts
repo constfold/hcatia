@@ -1,22 +1,24 @@
 import * as bcp from "../src/bytecode/print"
 import * as read from "../src/bytecode/read"
-import { execSync } from "child_process"
 import fs from "fs"
-import { luaJitPath, BufferStream, compileCases } from "./utils"
+import os from "os"
+import { BufferStream, listLuajitBytecode, prepareTestCases } from "./utils"
 
 const modify = (out: string): string => {
     return out
         .replace(/^(-- BYTECODE --).+$/gm, "$1")
-        .replace(/^([A-Z0-9 =>]+\d)\s+;.+$/gm, "$1")
+        // Remove comment string(not intend to support)
+        .replaceAll(/^([A-Z0-9 =>]+\d)\s+;.+$/gm, "$1")
+        // Fix line separator
+        // Note: we only use `\n` as separator for consistency
+        .replaceAll(os.EOL, "\n")
 }
 
-const cases = compileCases()
+const cases: string[] = prepareTestCases()
 
-describe.each(cases)("read bytecode %s", (filename) => {
+describe.each(cases)("bytecode %s", (filename) => {
     test("print same instructions", () => {
-        const stdout = execSync(
-            `cd ${luaJitPath} && ./luajit -bl ${filename}`
-        ).toString()
+        const bcList = modify(listLuajitBytecode(filename))
 
         let buf = ""
         const write = (s: string) => (buf += s)
@@ -26,6 +28,6 @@ describe.each(cases)("read bytecode %s", (filename) => {
 
         bcp.bytecode(write, bc)
 
-        expect(buf).toBe(modify(stdout))
+        expect(buf).toBe(bcList)
     })
 })

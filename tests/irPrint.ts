@@ -2,9 +2,9 @@ import fs from "fs"
 import * as bcread from "../src/bytecode/read"
 import transform from "../src/ir/transform"
 import { IrPrinter } from "../src/ir/print"
-import { BufferStream, compileCases } from "./utils"
+import { BufferStream, prepareTestCases } from "./utils"
 
-const cases = compileCases()
+const cases: string[] = prepareTestCases()
 
 describe.each(cases)("bytecode: %s", (filename) => {
     test("no exception", () => {
@@ -19,7 +19,7 @@ describe.each(cases)("bytecode: %s", (filename) => {
         const printer = new IrPrinter(write)
         printer.visitFile(ir)
 
-        console.log(buf)
+        fs.writeFileSync(filename + ".ir", buf)
 
         expect(buf).toBeTruthy()
     })
