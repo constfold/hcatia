@@ -21,7 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     
     env: 
-      LUAJIT_SRC: ./.install/LuaJIT-${{ matrix.luajit-version }}/src
+      LUAJIT: ./.install/LuaJIT-${{ matrix.luajit-version }}/src/luajit
     
     strategy:
       matrix:

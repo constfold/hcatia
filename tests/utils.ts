@@ -3,8 +3,7 @@ import { execFileSync } from "child_process"
 import * as path from "path"
 import { U8 } from "../src/bytecode/primitive"
 
-const luajitFile =
-    process.env.LUAJIT || "D:\\dev\\LuaJIT-2.0.5\\src\\luajit.exe"
+const luajitFile = process.env.LUAJIT
 const luajitDir = path.dirname(luajitFile)
 
 export class BufferStream {
