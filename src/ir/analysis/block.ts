@@ -3,8 +3,8 @@
  * in a function that could be useful in loop detection and data flow analysis.
  */
 
-import { Fn, If, IfThenAssign, Instruction, Jump } from "."
-import { Visitor } from "./visitor"
+import { Fn, If, IfThenAssign, Instruction, Jump } from ".."
+import { Visitor } from "../visitor"
 import assert from "assert"
 
 /**

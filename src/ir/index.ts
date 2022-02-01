@@ -49,7 +49,8 @@ export interface If {
     thenBranch: number
 }
 
-/** `ISTC` and `ISFC` both have side-effects, so while transforming it needs to be generated as three instructions
+/** 
+ * `ISTC` and `ISFC` both have side-effects, so while transforming it needs to be generated as three instructions
  * (`If`, `Jump`, `Assign`) from two BcInsts(`ISTC`, `JMP`) which makes jump mapping and subsequent operations a
  * little bit inconvenient. So I added this to IR, hoping this will make it easier to handle.
  */
@@ -346,7 +347,10 @@ export interface ForIn {
 }
 
 /**
- * According to LuaJIT wiki: "The *LOOP instructions are actually no-ops (except for hotspot detection) and don't branch."
+ * According to LuaJIT wiki: "The *LOOP instructions are actually no-ops(except for
+ * hotspot detection) and don't branch."
+ * 
+ * We kept this in IR in order to direct loop detection, although it's a no-op.
  */
 export interface GenericLoop {
     type: "GenericLoop"
