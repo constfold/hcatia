@@ -40,9 +40,9 @@ export function prepareTestCases(): string[] {
     const compiledCasesPath = "./build/tests/cases/"
 
     const cases = readdirSync(luaCasesPath)
-    .map((s) => path.join(luaCasesPath, s))
-    .map(s => path.resolve(s))
-    
+        .map((s) => path.join(luaCasesPath, s))
+        .map((s) => path.resolve(s))
+
     const v: string[] = []
     mkdirSync(compiledCasesPath, { recursive: true })
     for (const testLua of cases) {
