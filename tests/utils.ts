@@ -3,7 +3,12 @@ import { execFileSync } from "child_process"
 import * as path from "path"
 import { U8 } from "../src/bytecode/primitive"
 
-const luajitFile = process.env.LUAJIT
+const throwError = (message: string): never => {
+    throw new Error(message)
+}
+
+const luajitFile = process.env.LUAJIT ?? throwError("environment LUAJIT not found")
+
 const luajitDir = path.dirname(luajitFile)
 
 export class BufferStream {
