@@ -7,7 +7,9 @@ const throwError = (message: string): never => {
     throw new Error(message)
 }
 
-const luajitFile = process.env.LUAJIT ?? throwError("environment LUAJIT not found")
+const luajitFile = path.resolve(
+    process.env.LUAJIT ?? throwError("environment LUAJIT not found")
+)
 
 const luajitDir = path.dirname(luajitFile)
 
