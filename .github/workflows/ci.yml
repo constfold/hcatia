@@ -21,13 +21,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     
     env: 
-      LUAJIT: ./.install/LuaJIT-${{ matrix.luajit-version }}/src/luajit
+      LUAJIT: ./.install/LuaJIT-${{ matrix.luajit-version }}/bin/lua
       LUAJIT_SRC: ./.install/LuaJIT-${{ matrix.luajit-version }}/src/
     
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
         luajit-version: [2.0.5]
       
     steps:
