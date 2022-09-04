@@ -24,7 +24,7 @@
     },
     "devDependencies": {
         "@types/jest": "^27.4.0",
-        "@types/node": "^18.6.4",
+        "@types/node": "^18.7.14",
         "@types/sprintf-js": "^1.1.2",
         "@typescript-eslint/eslint-plugin": "^5.36.1",
         "@typescript-eslint/parser": "^5.32.0",
